@@ -9,10 +9,10 @@ namespace BarBob.Models
     {
         [Required]
         [MaxLength(100)]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
         [MaxLength(100)]
-        public string? LastName { get; set; }
+        public string LastName { get; set; }
         //-----ForeignKey here-----
         public int? BranchId { get; set; }
         [ForeignKey("BranchId")]

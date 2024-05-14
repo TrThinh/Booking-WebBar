@@ -1,4 +1,9 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,15 +22,91 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                        <!-- Sidebar - Brand -->
+                        @if (User.IsInRole("Customer"))
+                        {
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                                <div class="sidebar-brand-icon rotate-n-15">
+                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
+                            </a>
+                        }
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Manager" asp-controller="Home" asp-action="Index">
+                                <div class="sidebar-brand-icon rotate-n-15">
+                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
+                            </a>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                <div class="sidebar-brand-icon rotate-n-15">
+                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
+                            </a>
+                        }
+                        @if (User.IsInRole("Employee"))
+                        {
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Employee" asp-controller="Home" asp-action="Index">
+                                <div class="sidebar-brand-icon rotate-n-15">
+                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
+                            </a>
+                        }
+
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider my-0">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <partial name="_SidebarAdminPartial" />
+                        }
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <partial name="_SidebarManagerPartial" />
+                        }
+                        @if (User.IsInRole("Student"))
+                        {
+                            <partial name="_SidebarStudentPartial" />
+                        }
+                        @if (User.IsInRole("Coordinator"))
+                        {
+                            <partial name="_SidebarCoordinatorPartial" />
+                        }
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+
+                        <!-- Sidebar Toggler (Sidebar) -->
+                        <div class="text-center d-none d-md-inline">
+                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                        </div>
+
+                    </ul>
+                }
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    @* <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                    </ul>
+                    </ul> *@
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -39,7 +120,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - BarBob - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            - Created by TrThinh - <a href="https://github.com/TrThinh">TrThinh - Git</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

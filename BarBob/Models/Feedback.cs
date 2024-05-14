@@ -13,6 +13,7 @@ namespace BarBob.Models
         public string Title { get; set; }
         [Required]
         public DateTime FeedbackDate { get; set; }
+        public string? Image {  get; set; }
         //------ForeignKey here-----
         public string UserId { get; set; }
         [ForeignKey("UserId")]
