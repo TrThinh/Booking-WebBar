@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BarBob.Areas.Manager.Controllers
+namespace BarBob.Areas.Employee.Controllers
 {
-    public class HomeManagerController : Controller
+    public class DashboardController : Controller
     {
         public IActionResult Index()
         {
