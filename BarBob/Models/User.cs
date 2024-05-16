@@ -17,7 +17,7 @@ namespace BarBob.Models
         public int? BranchId { get; set; }
         [ForeignKey("BranchId")]
         [ValidateNever]
-        public Branch Branch { get; set; }
+        public virtual Branch Branch { get; set; }
         //-------------------------
         [NotMapped]
         public string Role { get; set; }

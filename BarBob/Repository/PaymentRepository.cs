@@ -10,7 +10,7 @@ using BarBob.Models;
 
 namespace BarBob.Repository
 {
-    public class PaymentRepository : Repository<Bill>, IPaymentRepository
+    public class PaymentRepository : Repository<Payment>, IPaymentRepository
     { 
         private ApplicationDbContext _db;
 

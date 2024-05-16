@@ -34,5 +34,4 @@ namespace BarBob.Repository
             return query.ToList();
         }
     }
-
 }

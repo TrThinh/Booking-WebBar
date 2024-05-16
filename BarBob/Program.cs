@@ -1,5 +1,7 @@
 using BarBob.Data;
 using BarBob.Models;
+using BarBob.Repository.IRepository;
+using BarBob.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ builder.Services.AddControllersWithViews();
 
 //Other server register
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

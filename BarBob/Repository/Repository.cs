@@ -77,5 +77,15 @@ namespace BarBob.Repository
         {
             dbSet.RemoveRange(entities);
         }
+
+        public IEnumerable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _db.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.ToList();
+        }
     }
 }

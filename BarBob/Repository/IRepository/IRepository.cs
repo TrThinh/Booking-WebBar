@@ -16,5 +16,7 @@ namespace BarBob.Repository.IRepository
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+
+        IEnumerable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
     }
 }
