@@ -12,7 +12,6 @@ namespace BarBob.Repository.IRepository
         IFeedbackRepository Feedback { get; }
         IBillRepository Bill { get; }
         IBookingRequestRepository BookingRequest { get; }
-        IBranchRepository Branch { get; }
         IDepositRepository Deposit { get; }
         IPaymentRepository Payment { get; }
         IServiceRepository Service { get; }

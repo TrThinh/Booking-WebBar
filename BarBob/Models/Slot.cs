@@ -12,10 +12,5 @@ namespace BarBob.Models
         public string TablePosition { get; set; }
         [Required]
         public int Status { get; set; }
-
-        public int BranchId { get; set; }
-        [ForeignKey(nameof(BranchId))]
-        [ValidateNever]
-        public Branch Branch { get; set; }
     }
 }

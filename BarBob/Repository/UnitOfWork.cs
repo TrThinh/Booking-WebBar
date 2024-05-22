@@ -16,7 +16,6 @@ namespace BarBob.Repository
         public ISlotRepository Slot { get; private set; }
         public IBillRepository Bill { get; private set; }
         public IBookingRequestRepository BookingRequest { get; private set; }
-        public IBranchRepository Branch { get; private set; }
         public IDepositRepository Deposit { get; private set; }
         public IPaymentRepository Payment { get; private set; }
         public IServiceRepository Service { get; private set; }
@@ -28,7 +27,6 @@ namespace BarBob.Repository
             Feedback = new FeedbackRepository(_db);
             Bill = new BillRepository(_db);
             BookingRequest = new BookingRequestRepository(_db);
-            Branch = new BranchRepository(_db);
             Deposit = new DepositRepository(_db);
             Payment = new PaymentRepository(_db);
             Service = new ServiceRepository(_db);

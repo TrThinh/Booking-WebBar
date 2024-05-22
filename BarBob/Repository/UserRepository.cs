@@ -23,15 +23,5 @@ namespace BarBob.Repository
         {
             _db.Users.Update(obj);
         }
-
-        public IEnumerable<User> GetUserByFacultyIdAndRole( string roleName)
-        {
-            var query = from userRole in _db.UserRoles
-                        join user in _db.Users on userRole.UserId equals user.Id
-                        join role in _db.Roles on userRole.RoleId equals role.Id
-                        select user;
-
-            return query.ToList();
-        }
     }
 }

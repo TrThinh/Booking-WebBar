@@ -9,15 +9,12 @@ namespace BarBob.Models
     {
         [Required]
         [MaxLength(100)]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         [Required]
         [MaxLength(100)]
-        public string LastName { get; set; }
-        //-----ForeignKey here-----
-        public int? BranchId { get; set; }
-        [ForeignKey("BranchId")]
-        [ValidateNever]
-        public virtual Branch Branch { get; set; }
+        public string? LastName { get; set; }
+        [Required]
+        public DateTime Birthday { get; set; }
         //-------------------------
         [NotMapped]
         public string Role { get; set; }

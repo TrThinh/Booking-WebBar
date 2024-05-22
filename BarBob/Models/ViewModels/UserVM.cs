@@ -17,8 +17,5 @@ namespace BarBob.Models.ViewModels
         public string Role { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> RoleList { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public Branch Branch { get; set; }
     }
 }

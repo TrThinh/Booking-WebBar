@@ -1,10 +1,12 @@
 ﻿using BarBob.Models;
+using BarBob.Models.ViewModels;
 using BarBob.Repository;
 using BarBob.Repository.IRepository;
 using BarBob.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BarBob.Areas.Admin.Controllers
@@ -29,12 +31,93 @@ namespace BarBob.Areas.Admin.Controllers
             return View();
         }
 
+        public IActionResult Create()
+        {
+            UserVM userVM = CreateUserVM();
+
+            return View(userVM);
+        }
+
+        private User CreateUser()
+        {
+            try
+            {
+                return Activator.CreateInstance<User>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+
+        private UserVM CreateUserVM()
+        {
+            UserVM userVM = new UserVM()
+            {
+                User = new User(),
+                RoleList = _roleManager.Roles
+                    .Where(role => role.Name != SD.Role_Admin)
+                    .Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Name
+                    })
+            };
+            return userVM;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UserVM userVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = CreateUser();
+
+                user.FirstName = userVM.User.FirstName;
+                user.LastName = userVM.User.LastName;
+                user.Email = userVM.User.Email;
+                user.UserName = userVM.User.Email;
+                user.PhoneNumber = userVM.User.PhoneNumber;
+                user.Birthday = userVM.User.Birthday;
+                user.EmailConfirmed = true;
+
+                var result = await _userManager.CreateAsync(user, userVM.Password);
+
+                if (result.Succeeded)
+                {
+                    if (!String.IsNullOrEmpty(userVM.User.Role))
+                    {
+                        await _userManager.AddToRoleAsync(user, userVM.User.Role);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                    }
+                    TempData["Success"] = "User created successfully";
+                    return Redirect("Index");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            UserVM newUserVM = CreateUserVM();
+            newUserVM.User = userVM.User;
+            TempData["Error"] = "Error creating user";
+            return View(newUserVM);
+        }
+
         #region API CALLS
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var users = _unitOfWork.User.GetAllIncluding(u => u.Branch).ToList();
+            var users = _unitOfWork.User.GetAllIncluding().ToList();
             var userList = new List<User>();
 
             foreach (var user in users)

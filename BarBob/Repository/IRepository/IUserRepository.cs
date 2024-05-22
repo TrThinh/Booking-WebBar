@@ -11,7 +11,5 @@ namespace BarBob.Repository.IRepository
     {
         void Update(User obj);
 
-        IEnumerable<User> GetUserByFacultyIdAndRole(string roleName);
-
     }
 }

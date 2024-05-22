@@ -19,10 +19,5 @@ namespace BarBob.Models
         [ForeignKey("UserId")]
         [ValidateNever]
         public User User { get; set; }
-
-        public int BranchId { get; set; }
-        [ForeignKey("BranchId")]
-        [ValidateNever]
-        public Branch Branch { get; set; }
     }
 }
