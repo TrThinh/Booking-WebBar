@@ -34,37 +34,33 @@
                         @if (User.IsInRole("Customer"))
                         {
                             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Customer" asp-controller="Dashboard" asp-action="Index">
-                                <div class="sidebar-brand-icon rotate-n-15">
-                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                <div class="sidebar-brand-text mx-3">
+                                    <img class="logo_barbob" src="~/image/logo.png"/>
                                 </div>
-                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
                             </a>
                         }
                         @if (User.IsInRole("Manager"))
                         {
                             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Manager" asp-controller="Dashboard" asp-action="Index">
-                                <div class="sidebar-brand-icon rotate-n-15">
-                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                <div class="sidebar-brand-text mx-3">
+                                    <img class="logo_barbob" src="~/image/logo.png" />
                                 </div>
-                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
                             </a>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                                <div class="sidebar-brand-icon rotate-n-15">
-                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                <div class="sidebar-brand-text mx-3">
+                                    <img class="logo_barbob" src="~/image/logo.png" />
                                 </div>
-                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
                             </a>
                         }
                         @if (User.IsInRole("Employee"))
                         {
                             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Employee" asp-controller="Dashboard" asp-action="Index">
-                                <div class="sidebar-brand-icon rotate-n-15">
-                                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                                <div class="sidebar-brand-text mx-3">
+                                    <img class="logo_barbob" src="~/image/logo.png" />
                                 </div>
-                                <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
                             </a>
                         }
 
@@ -101,10 +97,9 @@
                 } else
                 {
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home" asp-action="Index">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                        <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">
+                            <img class="logo_barbob" src="~/image/logo.png" />
                         </div>
-                        <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">BarBob</div>
                     </a>
                 }
 

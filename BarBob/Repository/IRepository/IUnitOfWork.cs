@@ -15,7 +15,6 @@ namespace BarBob.Repository.IRepository
         IDepositRepository Deposit { get; }
         IPaymentRepository Payment { get; }
         IServiceRepository Service { get; }
-        ISlotRepository Slot { get; }
 
         void Save();
         Task<int> SaveAsync();

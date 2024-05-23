@@ -90,29 +90,6 @@ namespace BarBob.Data
                 _userManager.AddToRoleAsync(userDB, SD.Role_Customer).GetAwaiter().GetResult();
             }
 
-            if (!_db.Slots.Any())
-            {
-                var slots = new List<Slot>
-                    {
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"},
-                        new Slot { Status = 1, TablePosition = "Over view"}
-
-                    };
-
-                _db.Slots.AddRange(slots);
-                _db.SaveChanges();
-            }
-
             if (!_db.Feedbacks.Any())
             {
                 User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");

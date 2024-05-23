@@ -14,7 +14,6 @@ namespace BarBob.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Slot> Slots { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }

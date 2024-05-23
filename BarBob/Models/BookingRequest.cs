@@ -20,12 +20,6 @@ namespace BarBob.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime BookingDate { get; set; }
         //-----ForeignKey here------
-        [Required]
-        public int SlotId { get; set; }
-        [ForeignKey("SlotId")]
-        [ValidateNever]
-        public Slot Slot { get; set; }
-
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

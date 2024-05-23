@@ -13,7 +13,6 @@ namespace BarBob.Repository
         private ApplicationDbContext _db;
         public IUserRepository User { get; private set; }
         public IFeedbackRepository Feedback { get; private set; }
-        public ISlotRepository Slot { get; private set; }
         public IBillRepository Bill { get; private set; }
         public IBookingRequestRepository BookingRequest { get; private set; }
         public IDepositRepository Deposit { get; private set; }
@@ -30,7 +29,6 @@ namespace BarBob.Repository
             Deposit = new DepositRepository(_db);
             Payment = new PaymentRepository(_db);
             Service = new ServiceRepository(_db);
-            Slot = new SlotRepository(_db);
         }
 
         public void Save()
