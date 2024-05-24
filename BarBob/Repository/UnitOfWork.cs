@@ -18,6 +18,7 @@ namespace BarBob.Repository
         public IDepositRepository Deposit { get; private set; }
         public IPaymentRepository Payment { get; private set; }
         public IServiceRepository Service { get; private set; }
+        public ITableRepository Table { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -29,6 +30,7 @@ namespace BarBob.Repository
             Deposit = new DepositRepository(_db);
             Payment = new PaymentRepository(_db);
             Service = new ServiceRepository(_db);
+            Table = new TableRepository(_db);
         }
 
         public void Save()

@@ -11,6 +11,12 @@ namespace BarBob.Models
         public int Id { get; set; }
         [Required]
         public int Status { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
+        [Required]
+        public string Guests { get; set; }
         //-----ForeignKey here------
         public int TableId { get; set; }
         [ForeignKey("TableId")]
