@@ -19,6 +19,11 @@ namespace BarBob.Models
         public int Total { get; set; }
         //-----ForeignKey here-----
         [Required]
+        public int BookingRequestId { get; set; }
+        [ForeignKey("BookingRequestId")]
+        [ValidateNever]
+        public BookingRequest BookingRequest { get; set; }
+        [Required]
         public int DepositId { get; set; }
         [ForeignKey("DepositId")]
         [ValidateNever]

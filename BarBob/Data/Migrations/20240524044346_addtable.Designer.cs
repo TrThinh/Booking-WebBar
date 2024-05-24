@@ -4,6 +4,7 @@ using BarBob.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BarBob.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240524044346_addtable")]
+    partial class addtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace BarBob.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookingRequestId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Cost")
                         .HasColumnType("int");
@@ -53,8 +53,6 @@ namespace BarBob.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingRequestId");
-
                     b.HasIndex("DepositId");
 
                     b.HasIndex("ServiceId");
@@ -73,16 +71,15 @@ namespace BarBob.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableId")
-                        .HasColumnType("int");
+                    b.Property<string>("TableId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TableId");
 
                     b.HasIndex("UserId");
 
@@ -444,12 +441,6 @@ namespace BarBob.Data.Migrations
 
             modelBuilder.Entity("BarBob.Models.Bill", b =>
                 {
-                    b.HasOne("BarBob.Models.BookingRequest", "BookingRequest")
-                        .WithMany()
-                        .HasForeignKey("BookingRequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BarBob.Models.Deposit", "Deposit")
                         .WithMany()
                         .HasForeignKey("DepositId")
@@ -462,8 +453,6 @@ namespace BarBob.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookingRequest");
-
                     b.Navigation("Deposit");
 
                     b.Navigation("Service");
@@ -471,19 +460,11 @@ namespace BarBob.Data.Migrations
 
             modelBuilder.Entity("BarBob.Models.BookingRequest", b =>
                 {
-                    b.HasOne("BarBob.Models.Table", "Table")
-                        .WithMany()
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BarBob.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Table");
 
                     b.Navigation("User");
                 });

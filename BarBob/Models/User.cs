@@ -14,6 +14,8 @@ namespace BarBob.Models
         [MaxLength(100)]
         public string? LastName { get; set; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Birthday { get; set; }
         //-------------------------
         [NotMapped]

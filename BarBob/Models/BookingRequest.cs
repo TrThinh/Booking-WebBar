@@ -11,15 +11,11 @@ namespace BarBob.Models
         public int Id { get; set; }
         [Required]
         public int Status { get; set; }
-        [Required]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
-        [Required]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        public DateTime BookingDate { get; set; }
         //-----ForeignKey here------
+        public int TableId { get; set; }
+        [ForeignKey("TableId")]
+        [ValidateNever]
+        public Table Table { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]
