@@ -1,3 +1,24 @@
+@font-face {
+    font-family: "Alongvill Khek";
+    src: url("//media-cdn.getbento.com/accounts/f468abc38bf68e2c74a93581297771cf/media/UyYcCj6R6OJHsTsEaEyd_ANLONG.TTF") format("truetype")
+}
+
+@font-face {
+    font-family: "Proxima Nova Regular";
+    src: url("//media-cdn.getbento.com/accounts/f468abc38bf68e2c74a93581297771cf/media/147NMpocQKu1fTHgJV4h_ProximaNova-Regular.otf") format("opentype")
+}
+
+@font-face {
+    font-family: "Nimbus Sans Bold Outline";
+    src: url("//media-cdn.getbento.com/accounts/f468abc38bf68e2c74a93581297771cf/media/n5ckkY5SOQvIPaAZkQFA_7c73de4d-3fb3-49a4-be7a-49af2b32833c.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: "Nimbus Sans Bold";
+    src: url("//media-cdn.getbento.com/accounts/f468abc38bf68e2c74a93581297771cf/media/gtLBEzeTJiW2oUITOibv_629411c2-48bb-45d9-a10c-f06d5fe0eb61.ttf") format("truetype")
+}
+
+
 html {
   font-size: 14px;
 }
@@ -28,6 +49,12 @@ body {
     border-radius: 50%;
 }
 
+/*--------------------Slide--------------------*/
+
+.carousel-inner .carousel-item {
+    transition: transform 0.15s ease;
+}
+
 /*--------------------SideBar--------------------*/
 .nav-item-sidebar {
     display: grid;
@@ -40,4 +67,164 @@ body {
     padding: 10px;
     color: #808080;
     text-decoration: none;
+}
+
+.sidebar_barbob {
+    display: flex;
+
+}
+
+.navbar_liner {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.nav-item-sidebar {
+    display: grid;
+    align-items: center;
+    font-size: 16px;
+    color: black;
+}
+
+.nav-link-sidebar {
+    padding: 10px;
+    color: #808080;
+    text-decoration: none;
+}
+
+.nav-map {
+    margin-bottom: 10px;
+}
+
+.nav-tag {
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+    border-color: white;
+}
+
+/*--------------------Body--------------------*/
+
+.body_home {
+    background: linear-gradient(to bottom, rgba(141, 0, 201, 1) 0%, rgba(26, 70, 229, 1) 100%);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.col-brand-5 {
+    max-width: 80%;
+    align-content: center;
+}
+
+.col-brand-4 {
+    max-width: 80%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-brand-4 {
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+}
+
+.h2-title-brand {
+    font-family: "Nimbus Sans Bold Outline";
+    color: #000;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 50px;
+}
+
+.text-brand {
+    font-size: 22px;
+}
+
+.about-title-1 {
+    font-family: cursive;
+    font-size: 35px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+.about-title {
+    font-family: cursive;
+    font-size: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+.about-text {
+    font-family: Georgia, serif;
+    font-size: 18px;
+}
+
+.info-title {
+    font-family: cursive;
+    font-size: 30px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.info-text {
+    font-family: font-family: "Gill Sans", sans-serif;
+    font-size: 18px;
+}
+
+.nav-map {
+    text-align: center;
+}
+
+/*--------------------Button--------------------*/
+
+.btn-a {
+    border-radius: 0px;
+    padding: 0.5rem 1rem 0.35rem;
+    white-space: normal;
+}
+
+.btn-a {
+    -webkit-transition: all .2s ease-in-out 0s;
+    transition: all .2s ease-in-out 0s;
+    font-size: .8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-width: 2px;
+}
+
+.btn-a {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2px;
+}
+
+.btn-a:hover {
+    margin-top: 5px;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+}
+
+.btn-a {
+    touch-action: manipulation;
+}
+
+.home-btn {
+    font-family: "Proxima Nova Regular";
+    color: #000;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: black;
+    border-radius: 2px;
 }

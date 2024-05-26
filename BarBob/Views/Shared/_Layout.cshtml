@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="~/BarBob.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" />
     <link href="/lib/startbootstrap-admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="~/lib/startbootstrap-admin" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/startbootstrap-admin/css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
+<body class="body_home">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="narbar_liner navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +30,7 @@
                 
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                    <ul class="sidebar_barbob" id="accordionSidebar">
 
                         <!-- Sidebar - Brand -->
                         @if (User.IsInRole("Customer"))
@@ -65,9 +67,6 @@
                         }
 
 
-                        <!-- Divider -->
-                        <hr class="sidebar-divider my-0">
-
                         @if (User.IsInRole("Admin"))
                         {
                             <partial name="_SidebarAdminPartial" />
@@ -85,13 +84,6 @@
                             <partial name="_SidebarEmployeePartial" />
                         }
 
-                        <!-- Divider -->
-                        <hr class="sidebar-divider d-none d-md-block">
-
-                        <!-- Sidebar Toggler (Sidebar) -->
-                        <div class="text-center d-none d-md-inline">
-                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                        </div>
 
                     </ul>
                 } else
@@ -116,12 +108,16 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            - Created by TrThinh - <a href="https://github.com/TrThinh">TrThinh - Git</a>
+    <br />
+    <br />
+    <div class="container shadow-top footer text-muted">
+        <div class="text-white">
+            - Created by TrThinh - <a class="text-white-50" style="text-decoration: none; " href="https://github.com/TrThinh">TrThinh - Git</a>
         </div>
-    </footer>
+        <div>
+
+        </div>
+    </div>
 
     @* ----------JQuery---------*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
