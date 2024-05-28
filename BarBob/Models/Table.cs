@@ -13,7 +13,7 @@ namespace BarBob.Models
         [ForeignKey("TableTypeId")]
         public TableType TableType { get; set; }
         [Required]
-        public string TableImg {  get; set; }
+        public string? TableImg {  get; set; }
         [Required]
         public string Description { get; set; }
     }
