@@ -5,16 +5,22 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace BarBob.Models
 {
-    public class BookingRequest
+    public class Booking
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public int Status { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BookingDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
+        public DateTime CheckinDate { get; set; }
+        [Required]
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        public TimeSpan CheckinTime { get; set; }
         [Required]
         public string Guests { get; set; }
         //-----ForeignKey here------

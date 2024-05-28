@@ -90,54 +90,54 @@ namespace BarBob.Data
                 _userManager.AddToRoleAsync(userDB, SD.Role_Customer).GetAwaiter().GetResult();
             }
 
-            if (!_db.Feedbacks.Any())
-            {
-                User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
+            //if (!_db.Feedbacks.Any())
+            //{
+            //    User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
 
-                if (user == null)
-                {
-                    return;
-                }
+            //    if (user == null)
+            //    {
+            //        return;
+            //    }
 
-                var feedbacks = new List<Feedback>
-                    {
-                        new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 15), Title = "Good", Status = "I was very funny at there" },
-                        new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 16), Title = "Good", Status = "I love that" }
-                    };
+            //    var feedbacks = new List<Feedback>
+            //        {
+            //            new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 15), Title = "Good", Status = "I was very funny at there" },
+            //            new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 16), Title = "Good", Status = "I love that" }
+            //        };
 
-                _db.Feedbacks.AddRange(feedbacks);
-                _db.SaveChanges();
-            }
+            //    _db.Feedbacks.AddRange(feedbacks);
+            //    _db.SaveChanges();
+            //}
 
-            if(!_db.Tables.Any())
-            {
-                var tables = new List<Table>
-                {
-                    new Table { Time = new TimeSpan(18,00,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(18,30,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(19,00,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(19,30,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(20,00,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(20,30,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(21,00,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(21,30,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(22,00,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(22,30,00), Type = "Indoor"},
-                    new Table { Time = new TimeSpan(18,00,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(18,30,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(19,00,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(19,30,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(20,00,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(20,30,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(21,00,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(21,30,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(22,00,00), Type = "Patio"},
-                    new Table { Time = new TimeSpan(22,30,00), Type = "Patio"}
-                };
+            //if(!_db.Tables.Any())
+            //{
+            //    var tables = new List<Table>
+            //    {
+            //        new Table { Time = new TimeSpan(18,00,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(18,30,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(19,00,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(19,30,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(20,00,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(20,30,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(21,00,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(21,30,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(22,00,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(22,30,00), Type = "Indoor"},
+            //        new Table { Time = new TimeSpan(18,00,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(18,30,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(19,00,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(19,30,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(20,00,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(20,30,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(21,00,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(21,30,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(22,00,00), Type = "Patio"},
+            //        new Table { Time = new TimeSpan(22,30,00), Type = "Patio"}
+            //    };
 
-                _db.Tables.AddRange(tables);
-                _db.SaveChanges();
-            }
+            //    _db.Tables.AddRange(tables);
+            //    _db.SaveChanges();
+            //}
 
         }
 

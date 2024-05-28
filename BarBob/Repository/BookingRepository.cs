@@ -10,18 +10,18 @@ using BarBob.Models;
 
 namespace BarBob.Repository
 {
-    public class ServiceRepository : Repository<Service>, IServiceRepository
+    public class BookingRepository : Repository<Booking>, IBookingRepository
     { 
         private ApplicationDbContext _db;
 
-        public ServiceRepository(ApplicationDbContext db) : base(db)
+        public BookingRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Service obj)
+        public void Update(Booking obj)
         {
-            _db.Services.Update(obj);
+            _db.Bookings.Update(obj);
         }
     }
 }

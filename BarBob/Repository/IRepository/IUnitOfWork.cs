@@ -10,12 +10,10 @@ namespace BarBob.Repository.IRepository
     {
         IUserRepository User { get; }
         IFeedbackRepository Feedback { get; }
-        IBillRepository Bill { get; }
-        IBookingRequestRepository BookingRequest { get; }
-        IDepositRepository Deposit { get; }
+        IBookingRepository Booking { get; }
         IPaymentRepository Payment { get; }
-        IServiceRepository Service { get; }
         ITableRepository Table { get; }
+        ITableTypeRepository TableType { get; }
 
         void Save();
         Task<int> SaveAsync();

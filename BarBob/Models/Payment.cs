@@ -9,15 +9,18 @@ namespace BarBob.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public DateTime Date { get; set; }
+        public string First_name { get; set; }
         [Required]
-        public int Status { get; set; }
+        public string Last_name { get; set;}
+        [Required]
+        public string Credit_card_no { get; set; }
+        [Required]
+        public DateTime Expire_date { get; set; }
         //-----ForeignKey here------
-        public int BillId { get; set; }
-        [ForeignKey("BillId")]
+        public int BookingId { get; set; }
+        [ForeignKey("BookingId")]
         [ValidateNever]
-        public Bill Bill { get; set; }
-
+        public Booking Booking { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

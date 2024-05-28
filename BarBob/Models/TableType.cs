@@ -5,16 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BarBob.Models
 {
-    public class Table
+    public class TableType
     {
         [Key]
         public int Id { get; set; }
-        public int TableTypeId { get; set; }
-        [ForeignKey("TableTypeId")]
-        public TableType TableType { get; set; }
         [Required]
-        public string TableImg {  get; set; }
+        public string Table_name { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string Price { get; set; }
+        
     }
 }
