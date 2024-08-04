@@ -131,20 +131,20 @@ namespace BarBob.Data
 
                 var tables = new List<Table>
                 {
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song", TableImg = "null" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge", TableImg = "null" }
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
+                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
+                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" }
 
                 };
 

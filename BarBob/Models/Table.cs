@@ -9,12 +9,14 @@ namespace BarBob.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
         public int TableTypeId { get; set; }
         [ForeignKey("TableTypeId")]
+        [ValidateNever]
         public TableType TableType { get; set; }
-        [Required]
-        public string? TableImg {  get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
     }
 }

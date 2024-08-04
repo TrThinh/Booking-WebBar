@@ -13,6 +13,5 @@ namespace BarBob.Models
         public string Table_name { get; set; }
         [Required]
         public string Price { get; set; }
-        
     }
 }

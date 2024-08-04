@@ -35,7 +35,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //Other server register
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ITableRepository, TableRepository>();
+builder.Services.AddScoped<ITableTypeRepository, TableTypeRepository>();
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -56,7 +59,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthorization();
 app.MapRazorPages();
 

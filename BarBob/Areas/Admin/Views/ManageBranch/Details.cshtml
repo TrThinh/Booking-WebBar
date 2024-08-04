@@ -1,4 +1,4 @@
-﻿@model TableType
+﻿@model BarBob.Models.ViewModels.TableVM
 
 @{
     var successMessage = TempData["success"] as string;
@@ -21,21 +21,15 @@
                 <button onclick="createTable()" type="button" class="btn btn-outline-primary my-4 btn-lg" data-toggle="modal" data-target="#modalCenter">
                     Create Table
                 </button>
-                @* <button onclick="details()" type="button" class="btn btn-outline-primary my-4 btn-lg" style="margin-left: 10px;">
-                    Details Table
-                </button> *@
-                <a asp-area="Admin" asp-controller="ManageBranch" asp-action="Details" type="button" class="btn btn-outline-primary my-4 btn-lg" style="margin-left: 10px;">
-                    Details Table
-                </a>
             </div>
         </div>
         <div class="card-body">
             <div class="">
-                <table id="dinner-table" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
+                <table id="details-table" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Table name</th>
-                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Table Type</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -45,14 +39,14 @@
     </div>
 </div>
 
-<!-- creat dinner Modal -->
+<!-- create Table Modal -->
 <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form id="tableForm" method="post" autocomplete="off">
-            <input asp-for="Id" id="tableId" class="form-control" aria-required="true" placeholder="" type="hidden" />
+        <form id="tableForm" method="post" autocomplete="off" asp-action="CreateOrUpdateTable">
+            <input asp-for="Table.Id" id="tableId" class="form-control" aria-required="true" type="hidden" />
             <div class="modal-content" style="width: 550px">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tableFormTitle">Create Table Type</h5>
+                    <h5 class="modal-title" id="tableFormTitle">Create Table</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,40 +54,40 @@
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col">
-                            <h5>Table name</h5>
+                            <h5>Description</h5>
                             <div>
-                                <input asp-for="Table_name" id="tableTime" class="form-control" aria-required="true" placeholder="" />
-                                <span asp-validation-for="Table_name" class="text-danger"></span>
+                                <input asp-for="Table.Description" id="tableDescription" class="form-control" aria-required="true" placeholder="" />
+                                <span asp-validation-for="Table.Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
-                            <h5>Price</h5>
+                            <h5>Table Type</h5>
                             <div>
-                                <input asp-for="Price" id="tableType" class="form-control" aria-required="true" placeholder="" />
-                                <span asp-validation-for="Price" class="text-danger"></span>
+                                <select asp-for="Table.TableTypeId" class="form-control" aria-required="true">
+                                    <option value="">Select Table Type</option>
+                                    @if (Model.TableTypeList != null)
+                                    {
+                                        @foreach (var item in Model.TableTypeList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="Table.TableTypeId" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
 
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script src="~/js/table.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#success-alert").fadeTo(4000, 500).slideUp(500, function () {
-                $("#success-alert").slideUp(500);
-            });
-        });
-    </script>
+    <script src="~/js/tableDetails.js"></script>
 }

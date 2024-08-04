@@ -2,33 +2,29 @@
 
 $(document).ready(function () {
     loadDataTable();
-
-    $('#modalCenter').on('hidden.bs.modal', function () {
-        window.location.href = '/admin/managebranch/index';
-    });
 });
 
 function loadDataTable() {
     dataTable = $('#dinner-table').DataTable({
-        "ajax": { url: '/admin/managebranch/getall' },
+        "ajax": { url: '/admin/managebranch/GetAll' },
         "columns": [
-            { "data": "time", "width": "15%", "className": "table-cell" },
-            { "data": "type", "width": "15%", "className": "table-cell" },
+            { "data": "table_name", "width": "10%", "className": "table-cell" },
+            { "data": "price", "width": "8%", "className": "table-cell" },
             {
                 data: { id: "id" },
                 "render": function (data) {
                     return `
                         <div class="text-center">
-                            <a onclick=editTable('${data.id}') class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#modalCenter">
+                            <button onclick="editTable('${data.id}')" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#modalCenter">
                                 <span class="text">Edit</span>
-                            </a> 
-                            <a onclick=deleteTable('${data.id}') class="btn btn-danger btn-icon-split">
+                            </button>
+                            <button onclick="deleteTable('${data.id}')" class="btn btn-danger btn-icon-split">
                                 <span class="text">Delete</span>
-                            </a> 
+                            </button>
                         </div>
-                    `
+                    `;
                 },
-                "width": "10%",
+                "width": "15%",
                 "className": "table-cell"
             }
         ]
@@ -50,6 +46,15 @@ function loadDataTable() {
     }
 }
 
+//function detailsTable(tableTypeId) {
+//    console.log(tableTypeId);
+//    location.href = "https://localhost:7278/Admin/ManageBranch/Details/" + tableTypeId;
+//}
+
+function details(tableTypeId) {
+    console.log(tableTypeId);
+    location.href = "https://localhost:7278/Admin/ManageBranch/Details";
+}
 
 function createTable() {
     // Reset the form
@@ -95,7 +100,7 @@ function deleteTable(id) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Send DELETE request on confirmation
+            // Send DELETE request on confirm
             fetch(`/admin/managebranch/deletebyid/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -110,7 +115,7 @@ function deleteTable(id) {
                             data.message,
                             'success'
                         );
-                        // Reload the DataTable after successful deletion
+                        // Reload the DataTable after successful delete
                         dataTable.ajax.reload();
                     } else {
                         Swal.fire(
