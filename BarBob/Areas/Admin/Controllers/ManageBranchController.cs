@@ -36,10 +36,25 @@ namespace BarBob.Areas.Admin.Controllers
 
         #region API CALLS
 
+        //[HttpGet]
+        //public async Task<IActionResult> GetAll()
+        //{
+        //    var tables = _unitOfWork.Table.GetAllIncluding().ToList();
+        //    return Json(new { data = tables });
+        //}
+
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var tables = _unitOfWork.Table.GetAllIncluding().ToList();
+            var tables = _unitOfWork.Table.GetAllIncluding().Select(t => new
+            {
+                table_name = t.Table_name,
+                description = t.Description,
+                price = t.Price,
+                quantity = t.Quantity,
+                id = t.Id
+            }).ToList();
+
             return Json(new { data = tables });
         }
 

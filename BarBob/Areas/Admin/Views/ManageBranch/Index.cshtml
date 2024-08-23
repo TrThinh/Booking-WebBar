@@ -28,7 +28,7 @@
                 <table id="dinner-table" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Table name</th>
+                            <th>Table Name</th>
                             <th>Description</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -58,21 +58,21 @@
                         <div class="col">
                             <h5>Table name</h5>
                             <div>
-                                <input asp-for="Table_name" id="tableName" class="form-control" aria-required="true" placeholder="Enter table name" />
+                                <input asp-for="Table_name" id="table_name" class="form-control" aria-required="true" placeholder="Enter table name" />
                                 <span asp-validation-for="Table_name" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <h5>Price</h5>
                             <div>
-                                <input asp-for="Price" id="tablePrice" class="form-control" aria-required="true" placeholder="Example 100000" />
+                                <input asp-for="Price" id="price" class="form-control" aria-required="true" placeholder="Example 100000" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <h5>Quantity</h5>
                             <div>
-                                <input asp-for="Quantity" id="tableQuantity" class="form-control" aria-required="true" placeholder="More than 0" />
+                                <input asp-for="Quantity" id="quantity" class="form-control" aria-required="true" placeholder="More than 0" />
                                 <span asp-validation-for="Quantity" class="text-danger"></span>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                         <div class="col">
                             <h5>Description</h5>
                             <div>
-                                <textarea asp-for="Description" id="tableDes" class="form-control" aria-required="true" placeholder="Enter description" rows="4"></textarea>
+                                <textarea asp-for="Description" id="description" class="form-control" aria-required="true" placeholder="Enter description" rows="4"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>

@@ -11,47 +11,36 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#dinner-table').DataTable({
-        "ajax": { url: '/admin/managebranch/GetAll' },
+        "ajax": {
+            "url": "/admin/managebranch/GetAll",
+            "dataSrc": "data"
+        },
         "columns": [
-            { "data": "table_name", "width": "10%", "className": "table-cell" },
-            { "data": "description", "width": "10%", "className": "table-cell" },
-            { "data": "price", "width": "10%", "className": "table-cell" },
-            { "data": "quantity", "width": "8%", "className": "table-cell" },
+            { "data": "table_name", "width": "20%", "className": "table-cell" },
+            { "data": "description", "width": "30%", "className": "table-cell" },
+            { "data": "price", "width": "15%", "className": "table-cell" },
+            { "data": "quantity", "width": "15%", "className": "table-cell" },
             {
-                data: { id: "id" },
+                "data": "id",
                 "render": function (data) {
                     return `
                         <div class="text-center">
-                            <button onclick="editTable('${data.id}')" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#modalCenter">
+                            <button onclick="editTable('${data}')" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#modalCenter">
                                 <span class="text">Edit</span>
                             </button>
-                            <button onclick="deleteTable('${data.id}')" class="btn btn-danger btn-icon-split">
+                            <button onclick="deleteTable('${data}')" class="btn btn-danger btn-icon-split">
                                 <span class="text">Delete</span>
                             </button>
                         </div>
                     `;
                 },
-                "width": "15%",
+                "width": "20%",
                 "className": "table-cell"
             }
         ]
     });
-
-    // CSS to shorten data when it's too long
-    var css = '.table-cell { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }',
-        head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style');
-
-    head.appendChild(style);
-
-    style.type = 'text/css';
-    if (style.styleSheet) {
-        // This is required for IE8 and below.
-        style.styleSheet.cssText = css;
-    } else {
-        style.appendChild(document.createTextNode(css));
-    }
 }
+
 
 function createTable() {
     // Reset the form
@@ -59,10 +48,10 @@ function createTable() {
     $('#tableFormTitle').text('Create Dinner');
     $('#modalCenter').modal('show');
     $('#tableId').val(0);
-    $('#tableName').val(null);
-    $('#tableDes').val(null);
-    $('#tablePrice').val(null);
-    $('#tableQuantity').val(null);
+    $('#table_name').val(null);
+    $('#description').val(null);
+    $('#price').val(null);
+    $('#quantity').val(null);
 }
 
 function editTable(id) {
@@ -77,10 +66,10 @@ function editTable(id) {
             }
 
             $('#tableId').val(data.id);
-            $('#tableName').val(data.table_name);
-            $('#tableDes').val(data.description);
-            $('#tablePrice').val(data.price);
-            $('#tableQuantity').val(data.quantity);
+            $('#table_name').val(data.table_name);
+            $('#description').val(data.description);
+            $('#price').val(data.price);
+            $('#quantity').val(data.quantity);
 
             $('#tableFormTitle').text('Edit Dinner');
             $('#modalCenter').modal('show');

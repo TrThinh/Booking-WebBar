@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="~/BarBob.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" />
     <link href="/lib/startbootstrap-admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    @* <link href="~/lib/startbootstrap-admin" rel="stylesheet" /> *@
     <link rel="stylesheet" href="~/lib/startbootstrap-admin/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="body_home">
+<body class="@(SignInManager.IsSignedIn(User) ? (User.IsInRole("Customer") ? "body_home" : "body_manage") : "body_home")">
     <header>
         <nav class="narbar_liner navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
             <div class="container-fluid">
@@ -27,7 +27,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <ul class="sidebar_barbob" id="accordionSidebar">
@@ -37,7 +37,7 @@
                         {
                             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Customer" asp-controller="Dashboard" asp-action="Index">
                                 <div class="sidebar-brand-text mx-3">
-                                    <img class="logo_barbob" src="~/image/logo.png"/>
+                                    <img class="logo_barbob" src="~/image/logo.png" />
                                 </div>
                             </a>
                         }
@@ -84,9 +84,9 @@
                             <partial name="_SidebarEmployeePartial" />
                         }
 
-
                     </ul>
-                } else
+                }
+                else
                 {
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home" asp-action="Index">
                         <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size: 20px;">
@@ -98,7 +98,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <partial name="_LoginPartial" />
                 </div>
-
 
             </div>
         </nav>
@@ -115,7 +114,6 @@
             - Created by TrThinh - <a class="text-white-50" style="text-decoration: none; " href="https://github.com/TrThinh">TrThinh - Git</a>
         </div>
         <div>
-
         </div>
     </div>
 
@@ -124,25 +122,15 @@
     <script src="~/lib/startbootstrap-admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/lib/startbootstrap-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/lib/startbootstrap-admin/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/lib/startbootstrap-admin/vendor/datatables/jquery.dataTables.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
-
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     <script src="~/lib/startbootstrap-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="~/lib/startbootstrap-admin/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
     <script src="~/lib/startbootstrap-admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
     <script src="~/lib/startbootstrap-admin/js/demo/datatables-demo.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
