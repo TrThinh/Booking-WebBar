@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
     loadDataTable();
+
+    $('#modalCenter').on('hidden.bs.modal', function () {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    });
 });
 
 function loadDataTable() {
@@ -32,7 +37,7 @@ function loadDataTable() {
         ]
     });
 
-    //CSS to shorten data when it's too long
+    // CSS to shorten data when it's too long
     var css = '.table-cell { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }',
         head = document.head || document.getElementsByTagName('head')[0],
         style = document.createElement('style');
@@ -48,32 +53,39 @@ function loadDataTable() {
     }
 }
 
-//function createTable() {
-//    // Reset the form
-//    $('#tableForm').trigger('reset');
-//    $('#tableFormTitle').text('Create Dinner');
-//    $('#modalCenter').modal('show');
-//    $('#tableId').val(0);
-//    $('#tableTime').val(null);
-//}
+function createTable() {
+    // Reset the form
+    $('#tableForm').trigger('reset');
+    $('#tableFormTitle').text('Create Dinner');
+    $('#modalCenter').modal('show');
+    $('#tableId').val(0);
+    $('#tableName').val(null);
+    $('#tableDes').val(null);
+    $('#tablePrice').val(null);
+    $('#tableQuantity').val(null);
+}
 
 function editTable(id) {
-    // Get the table data by id using an AJAX request
     $.ajax({
         url: '/admin/managebranch/getbyid/' + id,
         type: 'GET',
         success: function (response) {
             var data = response.data;
+            if (!data) {
+                console.error('No data found for the provided id');
+                return;
+            }
 
             $('#tableId').val(data.id);
-            $('#tableTime').val(data.time);
+            $('#tableName').val(data.table_name);
+            $('#tableDes').val(data.description);
+            $('#tablePrice').val(data.price);
+            $('#tableQuantity').val(data.quantity);
 
-            // Show the edit modal
             $('#tableFormTitle').text('Edit Dinner');
             $('#modalCenter').modal('show');
         },
         error: function (xhr, status, error) {
-            // Handle the error
             console.log(error);
         }
     });

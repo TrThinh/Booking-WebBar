@@ -176,6 +176,10 @@ body {
     text-align: center;
 }
 
+.textarea-custom {
+    width: 100%;
+}
+
 /*--------------------Button--------------------*/
 
 .btn-a {
