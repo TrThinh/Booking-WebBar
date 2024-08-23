@@ -1,4 +1,4 @@
-﻿@model TableType
+﻿@model Table
 
 @{
     var successMessage = TempData["success"] as string;
@@ -21,12 +21,6 @@
                 <button onclick="createTable()" type="button" class="btn btn-outline-primary my-4 btn-lg" data-toggle="modal" data-target="#modalCenter">
                     Create Table
                 </button>
-                @* <button onclick="details()" type="button" class="btn btn-outline-primary my-4 btn-lg" style="margin-left: 10px;">
-                    Details Table
-                </button> *@
-                <a asp-area="Admin" asp-controller="ManageBranch" asp-action="Details" type="button" class="btn btn-outline-primary my-4 btn-lg" style="margin-left: 10px;">
-                    Details Table
-                </a>
             </div>
         </div>
         <div class="card-body">
@@ -35,7 +29,9 @@
                     <thead>
                         <tr>
                             <th>Table name</th>
+                            <th>Description</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -67,17 +63,31 @@
                             </div>
                         </div>
                         <div class="col">
+                            <h5>Description</h5>
+                            <div>
+                                <input asp-for="Description" id="table" class="form-control" aria-required="true" placeholder="" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
                             <h5>Price</h5>
                             <div>
-                                <input asp-for="Price" id="tableType" class="form-control" aria-required="true" placeholder="" />
+                                <input asp-for="Price" id="table" class="form-control" aria-required="true" placeholder="" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h5>Quantity</h5>
+                            <div>
+                                <input asp-for="Quantity" id="table" class="form-control" aria-required="true" placeholder="" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
         </form>

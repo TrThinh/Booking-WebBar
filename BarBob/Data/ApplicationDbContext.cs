@@ -17,7 +17,7 @@ namespace BarBob.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<TableType> TableTypes { get; set; }
+        public DbSet<DailyTableAvailability> DailyTableAvailabilitys { get; set; }
         public DbSet<Table> Tables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuidlder)

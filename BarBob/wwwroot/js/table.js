@@ -9,7 +9,9 @@ function loadDataTable() {
         "ajax": { url: '/admin/managebranch/GetAll' },
         "columns": [
             { "data": "table_name", "width": "10%", "className": "table-cell" },
-            { "data": "price", "width": "8%", "className": "table-cell" },
+            { "data": "description", "width": "10%", "className": "table-cell" },
+            { "data": "price", "width": "10%", "className": "table-cell" },
+            { "data": "quantity", "width": "8%", "className": "table-cell" },
             {
                 data: { id: "id" },
                 "render": function (data) {
@@ -46,25 +48,14 @@ function loadDataTable() {
     }
 }
 
-//function detailsTable(tableTypeId) {
-//    console.log(tableTypeId);
-//    location.href = "https://localhost:7278/Admin/ManageBranch/Details/" + tableTypeId;
+//function createTable() {
+//    // Reset the form
+//    $('#tableForm').trigger('reset');
+//    $('#tableFormTitle').text('Create Dinner');
+//    $('#modalCenter').modal('show');
+//    $('#tableId').val(0);
+//    $('#tableTime').val(null);
 //}
-
-function details(tableTypeId) {
-    console.log(tableTypeId);
-    location.href = "https://localhost:7278/Admin/ManageBranch/Details";
-}
-
-function createTable() {
-    // Reset the form
-    $('#tableForm').trigger('reset');
-    $('#tableFormTitle').text('Create Dinner');
-    $('#modalCenter').modal('show');
-    $('#tableId').val(0);
-    $('#tableTime').val(null);
-    $('#tableType').val(null);
-}
 
 function editTable(id) {
     // Get the table data by id using an AJAX request
@@ -76,7 +67,6 @@ function editTable(id) {
 
             $('#tableId').val(data.id);
             $('#tableTime').val(data.time);
-            $('#tableType').val(data.type);
 
             // Show the edit modal
             $('#tableFormTitle').text('Edit Dinner');

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using BarBob.Data;
 using BarBob.Repository.IRepository;
 using BarBob.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace BarBob.Repository
 {
@@ -23,13 +22,6 @@ namespace BarBob.Repository
         public void Update(Table obj)
         {
             _db.Tables.Update(obj);
-        }
-
-        public async Task<IEnumerable<Table>> GetTablesByTableTypeIdAsync(int tableTypeId)
-        {
-            return await dbSet.Where(t => t.TableTypeId == tableTypeId)
-                              .Include(t => t.TableType)
-                              .ToListAsync();
         }
     }
 }

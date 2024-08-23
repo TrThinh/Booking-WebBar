@@ -109,42 +109,14 @@ namespace BarBob.Data
                 _db.SaveChanges();
             }
 
-            if (!_db.TableTypes.Any())
-            {
-                var tabletypes = new List<TableType>
-                {
-                    new TableType { Table_name = "Indoor", Price = "150.000" },
-                    new TableType { Table_name = "Patio", Price = "200.000" },
-
-                };
-
-                _db.TableTypes.AddRange(tabletypes);
-                _db.SaveChanges();
-            }
-
             if (!_db.Tables.Any())
             {
-                var tabletypes = _db.TableTypes.ToList();
-
-                var indoorTable = tabletypes.FirstOrDefault(tt => tt.Table_name == "Indoor");
-                var patioTable = tabletypes.FirstOrDefault(tt => tt.Table_name == "Patio");
-
                 var tables = new List<Table>
                 {
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" },
-                    new Table { TableType = indoorTable, Description = "Private and chill with song" },
-                    new Table { TableType = patioTable, Description = "Public and have Song Han Bridge" }
+                    new Table { Table_name = "Indoor", Description = "The table in the house has air conditioning and sound", 
+                        Price = 150000, Quantity = 20 },
+                    new Table { Table_name = "Outdoor", Description = "Outdoor table with air and sea breeze", 
+                        Price = 150000, Quantity = 20 },
 
                 };
 
@@ -155,7 +127,7 @@ namespace BarBob.Data
             if (!_db.Bookings.Any())
             {
                 User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
-                Table table = _db.Tables.FirstOrDefault(t => t.Description == "Private and chill with song");
+                Table table = _db.Tables.FirstOrDefault(t => t.Description == "The table in the house has air conditioning and sound");
 
 
                 if (user == null)
@@ -165,7 +137,7 @@ namespace BarBob.Data
 
                 var bookings = new List<Booking>
                 {
-                    new Booking {  UserId = user.Id, TableId = table.Id, Guests = "2", BookingDate = new DateTime(2024,5,29), CheckinDate = new DateTime(2024, 6, 2), CheckinTime = new TimeSpan(18, 30, 00)}
+                    new Booking {  UserId = user.Id, TableId = table.Id, Guests = 2, BookingDate = new DateTime(2024,5,29), CheckinDate = new DateTime(2024, 6, 2), CheckinTime = new TimeSpan(18, 30, 00)}
                 };
 
                 _db.Bookings.AddRange(bookings);

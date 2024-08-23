@@ -9,25 +9,33 @@ namespace BarBob.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BookingDate { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckinDate { get; set; }
+
         [Required]
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public TimeSpan CheckinTime { get; set; }
+
         [Required]
-        public string Guests { get; set; }
-        //-----ForeignKey here------
+        [Range(1, int.MaxValue, ErrorMessage = "The number of guests must be at least 1.")]
+        public int Guests { get; set; }
+
+        // ---------------Foreign Key---------------
+
         public int TableId { get; set; }
         [ForeignKey("TableId")]
         [ValidateNever]
         public Table Table { get; set; }
+
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

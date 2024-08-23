@@ -8,13 +8,20 @@ namespace BarBob.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [MaxLength(20)]
         public string Status { get; set; }
+
         [Required]
+        [MaxLength(200)]
         public string Title { get; set; }
+
         [Required]
         public DateTime FeedbackDate { get; set; }
-        public string? Image {  get; set; }
-        //------ForeignKey here-----
+
+        public string? Image { get; set; }
+
+        // ---------------Foreign Key-----------------
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

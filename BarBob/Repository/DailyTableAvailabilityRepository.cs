@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 using BarBob.Data;
 using BarBob.Repository.IRepository;
 using BarBob.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BarBob.Repository
 {
-    public class TableTypeRepository : Repository<TableType>, ITableTypeRepository
+    public class DailyTableAvailabilityRepository : Repository<DailyTableAvailability>, IDailyTableAvailabilityRepository
     { 
         private ApplicationDbContext _db;
 
-        public TableTypeRepository(ApplicationDbContext db) : base(db)
+        public DailyTableAvailabilityRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(TableType obj)
+        public void Update(DailyTableAvailability obj)
         {
-            _db.TableTypes.Update(obj);
+            _db.DailyTableAvailabilitys.Update(obj);
         }
     }
 }
