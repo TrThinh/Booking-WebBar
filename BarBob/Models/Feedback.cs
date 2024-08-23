@@ -9,11 +9,11 @@ namespace BarBob.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(1000)]
         public string Status { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(100)]
         public string Title { get; set; }
 
         [Required]

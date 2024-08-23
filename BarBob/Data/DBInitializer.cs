@@ -23,6 +23,7 @@ namespace BarBob.Data
 
         public void Initialize()
         {
+            // User data exa
             // create roles if they are not created
             if (!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
             {
@@ -90,6 +91,7 @@ namespace BarBob.Data
                 _userManager.AddToRoleAsync(userDB, SD.Role_Customer).GetAwaiter().GetResult();
             }
 
+            // Feedbacks data exa
             if (!_db.Feedbacks.Any())
             {
                 User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
@@ -101,14 +103,15 @@ namespace BarBob.Data
 
                 var feedbacks = new List<Feedback>
                     {
-                        new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 15), Title = "Good", Status = "I was very funny at there" },
-                        new Feedback { UserId = user.Id, FeedbackDate = new DateTime(2024, 2, 16), Title = "Good", Status = "I love that" }
+                        new Feedback { UserId = user.Id, Title = "Good", FeedbackDate = new DateTime(2024, 2, 15), Status = "I was very funny at there, nice service" },
+                        new Feedback { UserId = user.Id, Title = "Good", FeedbackDate = new DateTime(2024, 2, 16), Status = "I love that, so I will comeback more" }
                     };
 
                 _db.Feedbacks.AddRange(feedbacks);
                 _db.SaveChanges();
             }
 
+            // Table data exa
             if (!_db.Tables.Any())
             {
                 var tables = new List<Table>
@@ -124,6 +127,34 @@ namespace BarBob.Data
                 _db.SaveChanges();
             }
 
+            // Daily table data exa
+            if (!_db.DailyTableAvailabilitys.Any())
+            {
+                var tables = _db.Tables.ToList();
+
+                var startDate = new DateTime(2024, 6, 1);
+                var endDate = new DateTime(2024, 6, 10);
+
+                var dailyTableAvailabilities = new List<DailyTableAvailability>();
+
+                foreach (var table in tables)
+                {
+                    for (var date = startDate; date <= endDate; date = date.AddDays(1))
+                    {
+                        dailyTableAvailabilities.Add(new DailyTableAvailability
+                        {
+                            TableId = table.Id,
+                            Date = date,
+                            AvailableTables = 20
+                        });
+                    }
+                }
+
+                _db.DailyTableAvailabilitys.AddRange(dailyTableAvailabilities);
+                _db.SaveChanges();
+            }
+
+            // Booking data exa
             if (!_db.Bookings.Any())
             {
                 User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
