@@ -18,7 +18,21 @@ namespace BarBob.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult OurEvent()
+        {
+            return View();
+        }
+        public IActionResult BookEvent()
+        {
+            return View();
+        }
+
+		public IActionResult Menu()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }

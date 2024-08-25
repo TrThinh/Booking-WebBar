@@ -120,10 +120,11 @@ body {
 
     .nav-link-sidebar:hover,
     .nav-link-sidebar:focus {
-        box-shadow: 1px 1px 30px 20px #e0aaff;
+        box-shadow: 1px 1px 30px 30px #e0aaff;
         background-color: #e0aaff;
-        color: #ffffff;
+        color: black;
         text-decoration: none;
+        transition: 0.3s;
     }
 
     .nav-link-sidebar i {
@@ -138,9 +139,10 @@ body {
     }
 
 .nav-item-sidebar.active .nav-link-sidebar {
-    box-shadow: 1px 1px 30px 20px #e0aaff;
+    box-shadow: 1px 1px 30px 30px #e0aaff;
     background-color: #e0aaff;
-    color: #ffffff;
+    color: black;
+    font-weight: 1000;
     text-decoration: none;
 }
 
@@ -165,7 +167,6 @@ body {
 .nav-item-sidebar {
     margin: 5px 0;
 }
-
 /*--------------------Body--------------------*/
 
 .body_home {
@@ -251,6 +252,188 @@ body {
 .textarea-custom {
     width: 100%;
 }
+/* ---------------------Login/Res Page------------------- */
+.form-sign {
+    max-width: 40%;
+    margin: 20px auto;
+    background: linear-gradient(186deg, rgba(141,64,255,1) 42%, rgba(255,0,107,1) 100%);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+.form-text-sign {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: black;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* ---------------------Privacy Page Styles------------------- */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #a2d2ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    font-family: "Nimbus Sans Bold Outline", sans-serif;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.form-subtitle {
+    font-family: "Proxima Nova Regular", sans-serif;
+    color: #333;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.form-text {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.form-list {
+    margin-bottom: 20px;
+}
+
+    .form-list li {
+        margin-bottom: 10px;
+    }
+
+.form-contact {
+    font-family: "Gill Sans", sans-serif;
+    font-size: 18px;
+    color: #333;
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+/* -------------Menu page----------------- */
+
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Menu section styling */
+.menu-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu section header styling */
+.menu-section__header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Menu item styling */
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+    .menu-item:last-child {
+        margin-bottom: 0;
+    }
+
+.menu-item__heading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.menu-item__heading--name {
+    margin: 0;
+}
+
+.menu-item__details {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.menu-item__details--description {
+    margin-top: 5px;
+    font-style: italic;
+    color: #888;
+}
+
+.menu-item__details--price {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.menu-item__currency {
+    font-size: 14px;
+    vertical-align: top;
+}
+
+/* Addon styling */
+.menu-item__details--addon {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Special note styling */
+.menu-section--text {
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .menu-section--text p {
+        margin: 10px 0;
+    }
+
+    .menu-section--text em {
+        color: #007bff;
+    }
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-item__details--price {
+        margin-top: 10px;
+    }
+
+    .menu-section__header h2 {
+        font-size: 24px;
+    }
+}
+
+
 
 /*--------------------Manager Account--------------------*/
 

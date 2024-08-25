@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BarBob.Areas.Manager.Controllers
+namespace BarBob.Areas.Customer.Controllers
 {
-    [Area("Manager")]
-    public class DashboardController : Controller
+    [Area("Customer")]
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
     }
+
 }

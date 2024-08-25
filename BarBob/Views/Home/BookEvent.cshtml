@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Book Event";
+}
+
+<div class="form-container">
+    <h1 class="form-title">Book Your Event</h1>
+    <p class="form-text">Please fill in the form below to book your event. We will get back to you with confirmation details.</p>
+
+    <form asp-action="BookEvent" method="post" class="form-form">
+        <div class="form-group">
+            @* <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="Email" class="control-label">Email Address</label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+            <input asp-for="PhoneNumber" type="tel" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="EventDate" class="control-label">Event Date</label>
+            <input asp-for="EventDate" type="date" class="form-control" />
+            <span asp-validation-for="EventDate" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="EventTime" class="control-label">Event Time</label>
+            <input asp-for="EventTime" type="time" class="form-control" />
+            <span asp-validation-for="EventTime" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="Guests" class="control-label">Number of Guests</label>
+            <input asp-for="Guests" type="number" class="form-control" min="1" max="20" />
+            <span asp-validation-for="Guests" class="text-danger"></span> *@
+        </div>
+        <div class="form-group">
+            @* <label asp-for="EventType" class="control-label">Event Type</label>
+            <select asp-for="EventType" class="form-control">
+                <option value="Fireworks">Fireworks</option>
+                <option value="Concert">Concert</option>
+                <option value="Dancers">Dancers</option>
+                <option value="Bridge Rotation">Han River Bridge Rotation</option>
+            </select>
+            <span asp-validation-for="EventType" class="text-danger"></span> *@
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Booking</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
