@@ -29,9 +29,14 @@ namespace BarBob.Areas.Manager.Controllers
             return View(table);
         }
 
-        public IActionResult Menu()
+        public IActionResult Menu(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return View(new Menu());
+            }
+            Menu menu = _unitOfWork.Menu.Get(t => t.Id == id);
+            return View(menu);
         }
 
         #region API CALLS
@@ -49,6 +54,21 @@ namespace BarBob.Areas.Manager.Controllers
             }).ToList();
 
             return Json(new { data = tables });
+        }
+
+        [HttpGet]
+        public IActionResult GetAllMenu()
+        {
+            var menus = _unitOfWork.Menu.GetAllIncluding().Select(m => new
+            {
+                type = m.Type,
+                name = m.Name,
+                description = m.Description,
+                price = m.Price,
+                id = m.Id
+            }).ToList();
+
+            return Json(new { data = menus });
         }
 
         [HttpPost]
@@ -71,6 +91,26 @@ namespace BarBob.Areas.Manager.Controllers
             return RedirectToAction("Index", "Branch");
         }
 
+        [HttpPost]
+        public IActionResult Menu(Menu menu)
+        {
+            if (ModelState.IsValid)
+            {
+                if (menu.Id == 0)
+                {
+                    _unitOfWork.Menu.Add(menu);
+                    TempData["success"] = "Item created successfully";
+                }
+                else
+                {
+                    _unitOfWork.Menu.Update(menu);
+                    TempData["success"] = "Item updated successfully";
+                }
+                _unitOfWork.Save();
+            }
+            return RedirectToAction("Menu", "Branch");
+        }
+
         [HttpGet]
         public IActionResult GetById(int id)
         {
@@ -81,6 +121,18 @@ namespace BarBob.Areas.Manager.Controllers
             }
 
             return Json(new { data = table });
+        }
+
+        [HttpGet]
+        public IActionResult GetItemById(int id)
+        {
+            Menu menu = _unitOfWork.Menu.Get(m => m.Id == id);
+            if (menu == null)
+            {
+                return NotFound();
+            }
+
+            return Json(new { data = menu });
         }
 
         [HttpPost]
@@ -96,6 +148,19 @@ namespace BarBob.Areas.Manager.Controllers
             return View(table);
         }
 
+        [HttpPost]
+        public IActionResult CreateItem(Menu menu)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Menu.Add(menu);
+                _unitOfWork.Save();
+                TempData["success"] = "Item created successfully";
+                return RedirectToAction("Menu", "Branch");
+            }
+            return View(menu);
+        }
+
         [HttpDelete]
         public IActionResult DeleteById(int id)
         {
@@ -107,6 +172,19 @@ namespace BarBob.Areas.Manager.Controllers
             _unitOfWork.Table.Remove(table);
             _unitOfWork.Save();
             return Ok(new { success = true, message = "Delete table: \"" + table.Id + "\" successful" });
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteItemById(int id)
+        {
+            Menu menu = _unitOfWork.Menu.Get(t => t.Id == id);
+            if (menu == null)
+            {
+                return BadRequest(new { success = false, message = "Error while deleting item" });
+            }
+            _unitOfWork.Menu.Remove(menu);
+            _unitOfWork.Save();
+            return Ok(new { success = true, message = "Delete item: \"" + menu.Id + "\" successful" });
         }
 
         #endregion

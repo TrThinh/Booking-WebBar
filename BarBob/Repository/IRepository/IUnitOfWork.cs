@@ -14,6 +14,7 @@ namespace BarBob.Repository.IRepository
         IPaymentRepository Payment { get; }
         ITableRepository Table { get; }
         IDailyTableAvailabilityRepository DailyTableAvailability { get; }
+        IMenuRepository Menu { get; } 
 
         void Save();
         Task<int> SaveAsync();

@@ -1,6 +1,4 @@
-﻿
-
-document.getElementById("registerButton").addEventListener("click", function () {
+﻿document.getElementById("registerButton").addEventListener("click", function () {
     var checkbox = document.getElementById("termsCheckbox");
     var errorMessage = document.getElementById("errorMessage");
     if (!checkbox.checked) {
