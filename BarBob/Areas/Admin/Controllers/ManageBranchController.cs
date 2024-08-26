@@ -36,13 +36,6 @@ namespace BarBob.Areas.Admin.Controllers
 
         #region API CALLS
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var tables = _unitOfWork.Table.GetAllIncluding().ToList();
-        //    return Json(new { data = tables });
-        //}
-
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -105,19 +98,6 @@ namespace BarBob.Areas.Admin.Controllers
 
         [HttpDelete]
         public IActionResult DeleteById(int id)
-        {
-            Table table = _unitOfWork.Table.Get(t => t.Id == id);
-            if (table == null)
-            {
-                return BadRequest(new { success = false, message = "Error while deleting table" });
-            }
-            _unitOfWork.Table.Remove(table);
-            _unitOfWork.Save();
-            return Ok(new { success = true, message = "Delete table: \"" + table.Id + "\" successful" });
-        }
-
-        [HttpDelete]
-        public IActionResult DeleteDetailsTableById(int id)
         {
             Table table = _unitOfWork.Table.Get(t => t.Id == id);
             if (table == null)
