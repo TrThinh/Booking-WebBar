@@ -19,6 +19,7 @@ namespace BarBob.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<DailyTableAvailability> DailyTableAvailabilitys { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Menu> Menus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuidlder)
         {

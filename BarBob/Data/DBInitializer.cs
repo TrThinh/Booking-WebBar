@@ -174,7 +174,30 @@ namespace BarBob.Data
                 _db.Bookings.AddRange(bookings);
                 _db.SaveChanges();
             }
-        }
 
+            if (!_db.Menus.Any())
+            {
+                var menus = new List<Menu>
+                {
+                    new Menu { Type = "Food", Name = "Guacamole", Description = "Chips & Salsa", Price = 250000 },
+                    new Menu { Type = "Food", Name = "Griot & Pikliz", Description = "Crispy pork shoulder & spicy Haitian slaw", Price = 250000 },
+                    new Menu { Type = "Food", Name = "Harissa Buffalo Wings", Description = "", Price = 250000 },
+                    new Menu { Type = "Food", Name = "Shawarma Fries", Description = "Harissa Ketchup", Price = 150000 },
+                    new Menu { Type = "Food", Name = "Dozen East Coast Oysters", Description = "Cocktail Sauce, Lemon, Saltines, Tabasco", Price = 350000 },
+                    new Menu { Type = "Food", Name = "Key West Pink Shrimp", Description = "Cocktail Sauce", Price = 220000 },
+                    new Menu { Type = "Food", Name = "Daily Catch Ceviche", Description = "Aji Amarillo, Sesame, Soy, Quinoa", Price = 180000 },
+                    new Menu { Type = "Drink", Name = "Liquid Death Mountain Water", Description = "", Price = 50000 },
+                    new Menu { Type = "Drink", Name = "Liquid Death Sparkling Water", Description = "", Price = 50000 },
+                    new Menu { Type = "Drink", Name = "Coke, Diet Coke, Sprite & Gingerale", Description = "", Price = 40000 },
+                    new Menu { Type = "Drink", Name = "Red Bull", Description = "Classic, sugar-free & flavor editions", Price = 70000 },
+                    new Menu { Type = "Drink", Name = "Miss Collins", Description = "Watermelon, Citrus, Mint & Soda", Price = 100000 },
+                    new Menu { Type = "Wine", Name = "Skyside Chardonnay Sauvignon", Description = "Glass", Price = 180000 },
+                    new Menu { Type = "Wine", Name = "Skyside Cabernet Sauvignon", Description = "Glass", Price = 180000 }
+                };
+
+                _db.Menus.AddRange(menus);
+                _db.SaveChanges();
+            }
+        }
     }
 }
