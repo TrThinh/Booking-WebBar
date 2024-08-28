@@ -1,0 +1,98 @@
+﻿@model BarBob.Models.ViewModels.UserVM
+
+@{
+    ViewData["Title"] = "Add new account";
+}
+
+<div class="create-body">
+    <div class="form-create-account">
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                <h2>Add new account</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>First name</h5>
+                        <div>
+                            <input asp-for="User.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="First name" />
+                            <span asp-validation-for="User.FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Last name</h5>
+                        <div>
+                            <input asp-for="User.LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="Last name" />
+                            <span asp-validation-for="User.LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>Phone</h5>
+                        <div>
+                            <input asp-for="User.PhoneNumber" class="form-control" autocomplete="phonenumber" aria-required="true" placeholder="Phone number" />
+                            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Birthday</h5>
+                        <div>
+                            <input asp-for="User.Birthday" class="form-control" autocomplete="birthday" aria-required="true" placeholder="Your birthday" />
+                            <span asp-validation-for="User.Birthday" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>Email</h5>
+                        <div>
+                            <input asp-for="User.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email address" />
+                            <span asp-validation-for="User.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Password</h5>
+                        <div>
+                            <input asp-for="@Model.Password" class="form-control" autocomplete="username" aria-required="true" placeholder="Password" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>Role</h5>
+                        <div class="input-group mb-3">
+                            <select asp-for="@Model.User.Role" asp-items="@Model.RoleList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Role--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+
+                <div class="row mb-3 justify-content-end">
+                    <div class="col-auto">
+                        <button id="register-account" type="submit" class="btn btn-lg btn-primary">Create Account</button>
+                    </div>
+                    <div class="col-auto">
+                        <button id="close-form" type="button" class="btn btn-lg btn-secondary">Close</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/user-manager.js"></script>
+}
