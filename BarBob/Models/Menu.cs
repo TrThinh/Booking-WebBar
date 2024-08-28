@@ -20,7 +20,7 @@ namespace BarBob.Models
         [Column(TypeName = "decimal(18)")]
         public decimal Price { get; set; }
 
-        [Required]
+        [MaxLength(500)]
         public string Description { get; set; }
     }
 }

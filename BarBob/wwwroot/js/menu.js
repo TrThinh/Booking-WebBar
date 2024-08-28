@@ -16,6 +16,14 @@ function loadDataTable() {
             "dataSrc": "data"
         },
         "columns": [
+            {
+                "data": null,
+                "render": function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+                "width": "5%",
+                "className": "table-cell"
+            },
             { "data": "type", "width": "20%", "className": "table-cell" },
             { "data": "name", "width": "30%", "className": "table-cell" },
             { "data": "description", "width": "15%", "className": "table-cell" },
@@ -38,6 +46,11 @@ function loadDataTable() {
                 "className": "table-cell"
             }
         ]
+        ,
+        "rowCallback": function (row, data, index) {
+            var pageInfo = dataTable.page.info();
+            $('td:eq(0)', row).html(pageInfo.start + index + 1);
+        }
     });
 }
 
