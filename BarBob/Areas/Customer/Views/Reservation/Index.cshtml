@@ -1,0 +1,39 @@
+﻿@model BarBob.Models.ViewModels.ReservationVM
+
+@{
+    ViewData["Title"] = "Reservation";
+}
+
+<div class="form-container">
+    <h1>Make a Reservation</h1>
+    <form id="reservationForm" asp-action="BookTable" method="post">
+        <div class="form-group">
+            <label for="CheckinDate">Date</label>
+            <input type="date" asp-for="CheckinDate" class="form-control" id="CheckinDate" onchange="loadAvailableTables()" required />
+        </div>
+        <div class="form-group">
+            <label for="CheckinTime">Time</label>
+            <input type="time" asp-for="CheckinTime" class="form-control" id="CheckinTime" onchange="loadAvailableTables()" required />
+        </div>
+        <div class="form-group">
+            <label for="Guests">Guests</label>
+            <input type="number" asp-for="Guests" class="form-control" id="Guests" min="1" required />
+        </div>
+        <div class="form-group">
+            <label for="TableId">Table</label>
+            <select asp-for="TableId" class="form-control" id="TableId" required>
+                <option value="">Select a table</option>
+                @foreach (var table in Model.TableList)
+                {
+                    <option value="@table.Value">@table.Text</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Reserve</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/reservation.js"></script>
+}

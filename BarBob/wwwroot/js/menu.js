@@ -24,9 +24,9 @@ function loadDataTable() {
                 "width": "5%",
                 "className": "table-cell"
             },
-            { "data": "type", "width": "20%", "className": "table-cell" },
-            { "data": "name", "width": "30%", "className": "table-cell" },
-            { "data": "description", "width": "15%", "className": "table-cell" },
+            { "data": "type", "width": "8%", "className": "table-cell" },
+            { "data": "name", "width": "20%", "className": "table-cell" },
+            { "data": "description", "width": "30%", "className": "table-cell" },
             { "data": "price", "width": "15%", "className": "table-cell" },
             {
                 "data": "id",
@@ -42,7 +42,7 @@ function loadDataTable() {
                         </div>
                     `;
                 },
-                "width": "20%",
+                "width": "23%",
                 "className": "table-cell"
             }
         ]
