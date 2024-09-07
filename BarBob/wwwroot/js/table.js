@@ -19,7 +19,6 @@ function loadDataTable() {
             { "data": "table_name", "width": "20%", "className": "table-cell" },
             { "data": "description", "width": "30%", "className": "table-cell" },
             { "data": "price", "width": "15%", "className": "table-cell" },
-            { "data": "quantity", "width": "15%", "className": "table-cell" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -51,7 +50,6 @@ function createTable() {
     $('#table_name').val(null);
     $('#description').val(null);
     $('#price').val(null);
-    $('#quantity').val(null);
 }
 
 function editTable(id) {
@@ -69,7 +67,6 @@ function editTable(id) {
             $('#table_name').val(data.table_name);
             $('#description').val(data.description);
             $('#price').val(data.price);
-            $('#quantity').val(data.quantity);
 
             $('#tableFormTitle').text('Edit Dinner');
             $('#modalCenter').modal('show');

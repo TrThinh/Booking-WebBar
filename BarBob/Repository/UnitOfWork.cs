@@ -17,7 +17,6 @@ namespace BarBob.Repository
         public IBookingRepository Booking { get; private set; }
         public IPaymentRepository Payment { get; private set; }
         public ITableRepository Table { get; private set; }
-        public IDailyTableAvailabilityRepository DailyTableAvailability { get; private set; }
         public IMenuRepository Menu { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
@@ -28,7 +27,6 @@ namespace BarBob.Repository
             Booking = new BookingRepository(_db);
             Payment = new PaymentRepository(_db);
             Table = new TableRepository(_db);
-            DailyTableAvailability = new DailyTableAvailabilityRepository(_db);
             Menu = new MenuRepository(_db);
         }
 

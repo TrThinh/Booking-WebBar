@@ -49,7 +49,6 @@ namespace BarBob.Areas.Manager.Controllers
                 table_name = t.Table_name,
                 description = t.Description,
                 price = t.Price,
-                quantity = t.Quantity,
                 id = t.Id
             }).ToList();
 

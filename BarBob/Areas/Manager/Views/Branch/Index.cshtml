@@ -33,7 +33,6 @@
                             <th>Table Name</th>
                             <th>Description</th>
                             <th>Price</th>
-                            <th>Quantity</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -69,13 +68,6 @@
                             <div>
                                 <input asp-for="Price" id="price" class="form-control" aria-required="true" placeholder="Example 100000" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <h5>Quantity</h5>
-                            <div>
-                                <input asp-for="Quantity" id="quantity" class="form-control" aria-required="true" placeholder="More than 0" />
-                                <span asp-validation-for="Quantity" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

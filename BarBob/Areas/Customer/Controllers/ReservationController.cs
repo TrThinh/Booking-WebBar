@@ -43,65 +43,47 @@ namespace BarBob.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> BookTable(ReservationVM reservationVM)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                TempData["Error"] = "Invalid booking data.";
-                return RedirectToAction("Index");
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var booking = new Booking
+                {
+                    UserId = userId,
+                    TableId = (int)reservationVM.TableId,
+                    Guests = reservationVM.Guests,
+                    BookingDate = DateTime.Now,
+                    CheckinDate = reservationVM.CheckinDate,
+                    CheckinTime = reservationVM.CheckinTime
+                };
+
+                _unitOfWork.Booking.Add(booking);
+                await _unitOfWork.SaveAsync();
+
+                return Json(new { success = true, message = "Booking table successfully." });
             }
-
-            // Get the current user
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            else
             {
-                TempData["Error"] = "User not found.";
-                return RedirectToAction("Index");
+                var errorMessages = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return Json(new { success = false, message = "Invalid booking data.", errors = errorMessages });
             }
-
-            // Check table availability
-            var availability = _unitOfWork.DailyTableAvailability.Get(
-                a => a.TableId == reservationVM.TableId && a.Date == reservationVM.CheckinDate);
-
-            if (availability == null || availability.AvailableTables < reservationVM.Guests)
-            {
-                TempData["Error"] = "Not enough tables available.";
-                return RedirectToAction("Index");
-            }
-
-            // Create the booking
-            var booking = new Booking
-            {
-                UserId = user.Id,
-                TableId = reservationVM.TableId,
-                Guests = reservationVM.Guests,
-                BookingDate = DateTime.Now,
-                CheckinDate = reservationVM.CheckinDate,
-                CheckinTime = reservationVM.CheckinTime
-            };
-
-            // Add booking to database
-            _unitOfWork.Booking.Add(booking);
-
-            // Update table availability
-            availability.AvailableTables -= reservationVM.Guests;
-            _unitOfWork.DailyTableAvailability.Update(availability);
-
-            // Save changes to the database
-            _unitOfWork.Save();
-
-            TempData["Success"] = "Table booked successfully.";
-            return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult GetAvailableTables(DateTime date)
+        private IEnumerable<SelectListItem> GetAvailableTables()
         {
-            var availableTables = _unitOfWork.DailyTableAvailability.GetAll(
-                a => a.Date == date, includeProperties: "Table");
-
-            return Json(new { data = availableTables });
+            var tables = _unitOfWork.Table.GetAll();
+            return tables.Select(t => new SelectListItem
+            {
+                Text = t.Table_name + " - " + t.Description,
+                Value = t.Id.ToString()
+            });
         }
-
     }
 }

@@ -117,40 +117,13 @@ namespace BarBob.Data
                 var tables = new List<Table>
                 {
                     new Table { Table_name = "Indoor", Description = "The table in the house has air conditioning and sound", 
-                        Price = 150000, Quantity = 20 },
+                        Price = 150000},
                     new Table { Table_name = "Outdoor", Description = "Outdoor table with air and sea breeze", 
-                        Price = 150000, Quantity = 20 },
+                        Price = 150000},
 
                 };
 
                 _db.Tables.AddRange(tables);
-                _db.SaveChanges();
-            }
-
-            // Daily table data exa
-            if (!_db.DailyTableAvailabilitys.Any())
-            {
-                var tables = _db.Tables.ToList();
-
-                var startDate = new DateTime(2024, 6, 1);
-                var endDate = new DateTime(2024, 6, 10);
-
-                var dailyTableAvailabilities = new List<DailyTableAvailability>();
-
-                foreach (var table in tables)
-                {
-                    for (var date = startDate; date <= endDate; date = date.AddDays(1))
-                    {
-                        dailyTableAvailabilities.Add(new DailyTableAvailability
-                        {
-                            TableId = table.Id,
-                            Date = date,
-                            AvailableTables = 20
-                        });
-                    }
-                }
-
-                _db.DailyTableAvailabilitys.AddRange(dailyTableAvailabilities);
                 _db.SaveChanges();
             }
 

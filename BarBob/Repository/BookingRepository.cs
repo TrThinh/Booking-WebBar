@@ -19,6 +19,11 @@ namespace BarBob.Repository
             _db = db;
         }
 
+        public void Add(Booking booking)
+        {
+            _db.Bookings.Add(booking);
+        }
+
         public void Update(Booking obj)
         {
             _db.Bookings.Update(obj);
