@@ -5,27 +5,27 @@
     var tableListJson = Json.Serialize(Model.TableList);
 }
 
-<div class="reservation-container">
-    <h1>Make a Reservation</h1>
+<div class="form-card-container">
+    <h1 class="form-card-title">Make a Reservation</h1>
     <form id="reservationForm" asp-action="BookTable" method="post">
         <div class="row form-group">
-            <div class="col-3">
-                <label for="CheckinDate">Checkin Date</label>
+            <div class="col-5">
+                <label class="form-card-text" for="CheckinDate">Checkin Date</label>
                 <input type="date" asp-for="CheckinDate" class="form-control" id="CheckinDate" required />
             </div>
-            <div class="col-3">
-                <label for="CheckinTime">Checkin Time</label>
+            <div class="col-5">
+                <label class="form-card-text" for="CheckinTime">Checkin Time</label>
                 <input type="time" asp-for="CheckinTime" class="form-control" id="CheckinTime" required />
             </div>
         </div>
 
         <div class="row form-group">
-            <div class="col-2">
-                <label for="Guests">Guests</label>
+            <div class="col-3">
+                <label class="form-card-text" for="Guests">Guests</label>
                 <input type="number" asp-for="Guests" class="form-control" id="Guests" min="1" required />
             </div>
-            <div class="col-4">
-                <label for="TableId">Table</label>
+            <div class="col-5">
+                <label class="form-card-text" for="TableId">Table</label>
                 <select asp-for="TableId" class="form-control" id="TableId" required>
                     <option value="">Select a table</option>
                     @foreach (var table in Model.TableList)
