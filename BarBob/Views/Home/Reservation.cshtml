@@ -1,33 +1,31 @@
-﻿@model ReservationVM
-
-@{
+﻿@{
     ViewData["Title"] = "Reservation";
     var tableListJson = Json.Serialize(Model.TableList);
 }
 
 <div class="form-card-container">
     <h1 class="form-card-title">Make a Reservation</h1>
-    <form id="reservationForm" asp-action="BookTable" method="post">
+    <form id="reservationForm" method="post">
         <div class="row form-group">
             <div class="col-5">
                 <label class="form-card-text" for="CheckinDate">Checkin Date</label>
-                <input type="date" asp-for="CheckinDate" class="form-control" id="CheckinDate" required />
+                <input type="date"class="form-control" id="CheckinDate" required />
             </div>
             <div class="col-5">
                 <label class="form-card-text" for="CheckinTime">Checkin Time</label>
-                <input type="time" asp-for="CheckinTime" class="form-control" id="CheckinTime" required />
+                <input type="time" class="form-control" id="CheckinTime" required />
             </div>
         </div>
 
         <div class="row form-group">
             <div class="col-3">
                 <label class="form-card-text" for="Guests">Guests</label>
-                <input type="number" asp-for="Guests" class="form-control" id="Guests" min="1" required />
+                <input type="number" class="form-control" id="Guests" min="1" required />
             </div>
             <div class="col-5">
                 <label class="form-card-text" for="TableId">Table</label>
-                <select asp-for="TableId" class="form-control" id="TableId" required>
-                    <option value="">Select a table</option>
+                <select class="form-control" id="TableId" required>
+                    <option>Select a table</option>
                     @foreach (var table in Model.TableList)
                     {
                         <option value="@table.Value">@table.Text</option>
@@ -35,6 +33,9 @@
                 </select>
             </div>
         </div>
+        <div class="form-card-text" style="margin: auto; text-align: center; padding: 10px; font-size: 16px;">
+            Please, <a id="login" asp-area="Identity" asp-page="/Account/Login" class="form-card-text" style="color: red; text-decoration: none;">login account </a>
+            before make a reservation!</div>
         <button type="submit" class="home-btn btn-a" style="margin: auto;">Reserve</button>
     </form>
 </div>

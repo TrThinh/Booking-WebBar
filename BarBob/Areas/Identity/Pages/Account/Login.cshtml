@@ -28,15 +28,15 @@
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <div class="div-login-btn">
+                    <button id="login-submit" type="submit" class="btn-login btn-a" style="width: 80px;">Log in</button>
                 </div>
                 <div class="form-text-sign">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <a id="forgot-password" class="form-login-text" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register here</a>
+                        <a asp-page="./Register" class="form-login-text" asp-route-returnUrl="@Model.ReturnUrl">Register here</a>
                     </p>
                 </div>
             </form>
