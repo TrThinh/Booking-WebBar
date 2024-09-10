@@ -69,6 +69,7 @@ namespace BarBob.Controllers
 
 
         //Reservation
+        [Area("Customer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Reservation(ReservationVM reservationVM)

@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Our Event";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-black fw-bold">Our Events</h1>
+        <p class="text-white">Explore the exciting happenings at our venue. Whether you're into live music, dazzling fireworks, or stunning performances, we have something special just for you.</p>
+    </div>
+
+    <!-- Event List -->
+    <div class="event-list">
+
+        <!-- Fireworks Festival -->
+        <div class="event-item mb-5 nav-tag">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/image/fireworks-festival.jpg" alt="Fireworks Festival" class="img-fluid rounded" />
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-center">
+                    <h2 class="h2-title-brand">Fireworks Festival</h2>
+                    <p class="text-black">Experience a breathtaking fireworks display that will light up the night sky. A visual treat that you don’t want to miss.</p>
+                    <p class="text-white">Date: Every Monday | Time: 8:00 PM - 10:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concert Night -->
+        <div class="event-item mb-5 nav-tag">
+            <div class="row">
+                <div class="col-md-4 order-md-2">
+                    <img src="~/image/Concert.jpg" alt="Concert Night" class="img-fluid rounded" />
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-center order-md-1">
+                    <h2 class="h2-title-brand">Concert Night</h2>
+                    <p class="text-black">Join us for an electrifying night of live music with performances from top artists. Get ready to dance the night away.</p>
+                    <p class="text-white">Date: Second Sunday every month | Time: 7:00 PM - 11:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dancer Show -->
+        <div class="event-item mb-5 nav-tag">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/image/Dancer.jpg" alt="Dancer Show" class="img-fluid rounded" />
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-center">
+                    <h2 class="h2-title-brand">Dancer Show</h2>
+                    <p class="text-black">Our dancers are ready to dazzle you with their breathtaking moves in an unforgettable performance.</p>
+                    <p class="text-white">Date: Every Sunday | Time: 6:00 PM - 9:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Han River Bridge Rotation -->
+        <div class="event-item mb-5 nav-tag">
+            <div class="row">
+                <div class="col-md-4 order-md-2">
+                    <img src="~/image/HanBridge.jpg" alt="Han River Bridge Rotation" class="img-fluid rounded" />
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-center order-md-1">
+                    <h2 class="h2-title-brand">Han River Bridge Rotation</h2>
+                    <p class="text-black">Witness the majestic Han River Bridge as it rotates to allow ships to pass, a unique spectacle of engineering.</p>
+                    <p class="text-white">Date: Every Saturday | Time: 11:00 PM - 11:30 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
