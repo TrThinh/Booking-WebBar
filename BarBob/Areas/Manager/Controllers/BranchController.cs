@@ -29,6 +29,16 @@ namespace BarBob.Areas.Manager.Controllers
             return View(table);
         }
 
+        public IActionResult Booking(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return View(new Booking());
+            }
+            Booking booking = _unitOfWork.Booking.Get(t => t.Id == id);
+            return View(booking);
+        }
+
         public IActionResult Menu(int? id)
         {
             if (id == null || id == 0)
@@ -53,6 +63,22 @@ namespace BarBob.Areas.Manager.Controllers
             }).ToList();
 
             return Json(new { data = tables });
+        }
+
+        [HttpGet]
+        public IActionResult GetAllBooking()
+        {
+            var bookings = _unitOfWork.Booking.GetAllIncluding(b => b.User, b => b.Table).Select(t => new
+            {
+                userName = t.User.UserName,
+                tableName = t.Table.Table_name,
+                guest = t.Guests,
+                bookingDate = t.BookingDate,
+                checkinDate = t.CheckinDate,
+                checkinTime = t.CheckinTime
+            }).ToList();
+
+            return Json(new { data = bookings });
         }
 
         [HttpGet]

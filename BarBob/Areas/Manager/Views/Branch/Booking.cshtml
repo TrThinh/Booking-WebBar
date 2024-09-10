@@ -1,0 +1,40 @@
+﻿@model Booking
+
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<div class="container-fluild mx-4">
+    <h1 class="h3 mb-2 text-gray-800">Booking list</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Order data table</h6>
+            <div class="col-6 d-flex justify-content-end">@* 
+                <a asp-controller="ManageUser" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  Create New Account
+                </a> *@
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="">
+                <table id="booking-table" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Table</th>
+                            <th>Guest</th>
+                            <th>Booking date</th>
+                            <th>Checkin date</th>
+                            <th>Checkin time</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/booking.js"></script>
+}
