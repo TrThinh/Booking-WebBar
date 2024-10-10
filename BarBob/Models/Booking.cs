@@ -29,6 +29,14 @@ namespace BarBob.Models
         [Range(1, int.MaxValue, ErrorMessage = "The number of guests must be at least 1.")]
         public int Guests { get; set; }
 
+        [Required]
+        public string Status {  get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        [Range(0, double.MaxValue)]
+        public decimal Count { get; set; }
+
         // ---------------Foreign Key---------------
 
         public int TableId { get; set; }

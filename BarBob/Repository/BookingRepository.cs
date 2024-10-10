@@ -11,7 +11,7 @@ using BarBob.Models;
 namespace BarBob.Repository
 {
     public class BookingRepository : Repository<Booking>, IBookingRepository
-    { 
+    {
         private ApplicationDbContext _db;
 
         public BookingRepository(ApplicationDbContext db) : base(db)

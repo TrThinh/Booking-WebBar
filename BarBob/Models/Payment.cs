@@ -10,16 +10,12 @@ namespace BarBob.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public string First_name { get; set; }
+        public decimal Amount { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public string Last_name { get; set; }
+        public string Status {  get; set; }
 
-        [Required]
-        [RegularExpression(@"\d{16}", ErrorMessage = "Invalid credit card number.")]
-        public string Credit_card_no { get; set; }
+        public string TransactionId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

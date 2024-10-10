@@ -252,6 +252,19 @@ body {
 .textarea-custom {
     width: 100%;
 }
+
+.title-table {
+    font-size: 22px;
+    color: black;
+    margin: 3px;
+}
+
+.text-content-table {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}
 /* ---------------------Login/Res Page------------------- */
 .form-sign {
     max-width: 40%;
@@ -697,3 +710,18 @@ button[type="submit"] {
     border-color: black;
     border-radius: 2px;
 }
+
+.pay-btn {
+    font-family: "Proxima Nova Regular";
+    color: #000;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: black;
+    border-radius: 2px;
+    margin: 2px;
+}
+
+    .pay-btn:hover {
+        color: white;
+        background-color: black;
+        border-color: white;
+    }

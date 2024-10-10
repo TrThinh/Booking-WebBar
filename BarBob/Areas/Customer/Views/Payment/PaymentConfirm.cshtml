@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Payment Confirmation";
+    var vnp_ResponseCode = Context.Request.Query["vnp_ResponseCode"].ToString();
+    var vnp_TransactionNo = Context.Request.Query["vnp_TransactionNo"].ToString();
+    var vnp_TxnRef = Context.Request.Query["vnp_TxnRef"].ToString();
+}
+
+<div class="container">
+    @if (vnp_ResponseCode == "00")
+    {
+        <h1>Payment Success</h1>
+        <p>Your payment has been successfully processed.</p>
+        <p>Transaction No: @vnp_TransactionNo</p>
+        <p>Order Reference: @vnp_TxnRef</p>
+    }
+    else
+    {
+        <h1>Payment Failed</h1>
+        <p>Unfortunately, your payment was not successful. Please try again.</p>
+        <p>Error Code: @vnp_ResponseCode</p>
+    }
+</div>

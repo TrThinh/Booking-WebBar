@@ -18,6 +18,16 @@
                     <p style="padding-left: 10px; padding-top: 10px;"> <i class="fa fa-user fa-lg" aria-hidden="true" style="padding-right: 10px;"></i>User</p>
                 </a>
                 <div class="dropdown-divider"></div>
+                @if (User.IsInRole("Customer"))
+                {
+                    <a class="nav-link text-dark dropdown-item" asp-area="Customer" asp-controller="Reservation" asp-action="History">
+                        <p style="padding-left: 10px; padding-top: 10px;">
+                            <i class="fa fa-list fa-lg" style="padding-right: 10px;"></i>Order
+                        </p>
+                    </a>
+
+                }
+                <div class="dropdown-divider"></div>
                 <a id="manage" class="nav-link text-dark dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <p style="padding-left: 10px; padding-top: 10px;"><i class="fas fa-sign-out-alt fa-lg" style="padding-right: 10px;"></i>Logout</p>
                 </a>

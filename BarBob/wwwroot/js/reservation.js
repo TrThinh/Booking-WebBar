@@ -2,38 +2,22 @@
     event.preventDefault();
 
     var formData = new FormData(this);
-    formData.append("TableList", JSON.stringify(tableList));
 
     fetch('/Customer/Reservation/BookTable', {
         method: 'POST',
-        body: formData,
-        headers: {
-            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-        }
+        body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            var resultMessage = document.getElementById("resultMessage");
-
-            if (data.success) {
-                resultMessage.className = "alert alert-success";
-                resultMessage.innerText = data.message;
-                console.log("Success:", data.message);
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
             } else {
-                resultMessage.className = "alert alert-danger";
-                resultMessage.innerText = data.message;
-
-                if (data.errors && data.errors.length > 0) {
-                    console.log("Error details:", data.errors);
-                    data.errors.forEach(error => {
-                        console.log("Error:", error);
-                    });
-                }
-
-                console.log("Error:", data.message);
+                return response.json();
             }
-
-            resultMessage.style.display = "block";
+        })
+        .then(data => {
+            if (data && !data.success) {
+                alert(data.message);
+            }
         })
         .catch(error => {
             console.error("Error during form submission:", error);
