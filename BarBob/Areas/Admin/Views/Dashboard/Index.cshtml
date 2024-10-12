@@ -1,3 +1,29 @@
-﻿<h1>
-    This is index view of admin
-</h1>
+﻿@{
+    ViewData["Title"] = "Bookings Per Table Chart";
+}
+
+<div class="form-card-container">
+    <h2>Bookings Per Table</h2>
+
+    <canvas id="bookingsTableChart" width="800" height="400"></canvas>
+</div>
+
+
+<div class="row">
+    <div class="col-5">
+        <div class="form-card-container">
+            <h2>Bookings Summary</h2>
+            <p>Total Bookings: <span id="totalBookings"></span></p>
+            <p>Total Price: <span id="totalPrice"></span> VND</p>
+        </div>
+    </div>
+    <div class="col-5">
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/admin_dashboard.js"></script>
+}

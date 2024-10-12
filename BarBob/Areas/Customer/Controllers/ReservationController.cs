@@ -159,6 +159,12 @@ namespace BarBob.Areas.Customer.Controllers
             var vnp_SecureHash = Request.Query["vnp_SecureHash"];
             var queryParams = Request.Query.ToDictionary(k => k.Key, v => v.Value.ToString());
 
+            Console.WriteLine("Response Data from VNPay: ");
+            foreach (var param in Request.Query)
+            {
+                Console.WriteLine($"{param.Key}: {param.Value}");
+            }
+
             // Kiểm tra hash và trạng thái thanh toán
             var bookingId = int.Parse(Request.Query["vnp_TxnRef"]);
             var booking = _unitOfWork.Booking.GetFirstOrDefault(b => b.Id == bookingId);
