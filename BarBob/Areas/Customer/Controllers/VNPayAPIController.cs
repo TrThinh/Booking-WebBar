@@ -1,4 +1,5 @@
 ﻿using BarBob.Areas.Customer.Controllers.Util;
+using BarBob.Models.ViewModels;
 using BarBob.Repository.IRepository;
 using BarBob.Utility.Service;
 using Microsoft.AspNetCore.Identity;
@@ -77,7 +78,15 @@ namespace BarBob.Areas.Customer.Controllers
                             _unitOfWork.Save();
                         }
 
-                        return RedirectToAction("SuccessPage");
+                        var model = new PaymentSuccessVM
+                        {
+                            BookingId = (int)orderId,
+                            AmountPaid = booking.Count,
+                            TransactionId = vnpayTranId.ToString(),
+                            PaymentDate = DateTime.Now
+                        };
+
+                        return View("SuccessPage", model);
                     }
                     else
                     {

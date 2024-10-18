@@ -2,7 +2,38 @@
     ViewData["Title"] = "Reservation Success";
 }
 
-<div class="container">
-    <h1>Reservation Success</h1>
-    <p>Your reservation has been successfully made. Thank you!</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div class="alert alert-success" role="alert">
+            <h1 class="text-success">Reservation Success</h1>
+            <h4 class="alert-heading">Thank you!</h4>
+            <p>Your reservation has been successfully made.</p>
+        </div>
+
+        <div class="form-card-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="card-body">
+                <h5 style="font-size: 40px;">Payment Details:</h5>
+                <p><strong>Booking ID:</strong> @Model.BookingId</p>
+                <p><strong>Amount Paid:</strong> @Model.AmountPaid VND</p>
+                <p><strong>Transaction ID:</strong> @Model.TransactionId</p>
+                <p><strong>Status:</strong> Confirmed</p>
+                <p><strong>Payment Date:</strong> @Model.PaymentDate.ToString("dd/MM/yyyy HH:mm:ss")</p>
+            </div>
+            <a class="home-btn btn-a" asp-area="Customer" asp-controller="Home" asp-action="Index">Return to Home</a>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
