@@ -24,10 +24,10 @@ async function renderChart() {
         data: {
             labels: labels,
             datasets: [{
-                label: '# of Bookings',
+                label: '# Type Table',
                 data: counts,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(164, 94, 255, 1)',
+                borderColor: 'rgba(211, 94, 255, 1)',
                 borderWidth: 1
             }]
         },

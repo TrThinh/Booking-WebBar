@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
+using BarBob.Utility.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,8 +33,8 @@ builder.Services.AddControllers()
 //Other server register
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddScoped<ITableRepository, DailyTableAvailabilityRepository>();
-//builder.Services.AddScoped<IDailyTableAvailabilityRepository, TableRepository>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<VNPayService>();
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 

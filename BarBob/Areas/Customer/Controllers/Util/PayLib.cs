@@ -7,17 +7,25 @@ namespace BarBob.Areas.Customer.Controllers.Util
 {
     public class PayLib
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         public const string VERSION = "2.1.0";
-        private SortedList<String, String> _responseData = new SortedList<String, String>(new VnPayCompare());
         private SortedList<string, string> _requestData = new SortedList<string, string>(new VnPayCompare());
+        private SortedList<String, String> _responseData = new SortedList<String, String>(new VnPayCompare());
+
+        public PayLib(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public void AddRequestData(string key, string value)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (!String.IsNullOrEmpty(value))
             {
                 _requestData.Add(key, value);
             }
         }
+
         public void AddResponseData(string key, string value)
         {
             if (!String.IsNullOrEmpty(value))
@@ -40,6 +48,7 @@ namespace BarBob.Areas.Customer.Controllers.Util
         }
 
         #region Request
+
         public string CreateRequestUrl(string baseUrl, string vnp_HashSecret)
         {
             StringBuilder data = new StringBuilder();
@@ -62,29 +71,12 @@ namespace BarBob.Areas.Customer.Controllers.Util
             string vnp_SecureHash = HmacSHA512(vnp_HashSecret, signData);
             baseUrl += "vnp_SecureHash=" + vnp_SecureHash;
 
-            Console.WriteLine("Sign Data (Before Hashing): " + signData);
-            Console.WriteLine("Secure Hash: " + vnp_SecureHash);
+            Console.WriteLine("SecureHash: " + vnp_SecureHash);
+            Console.WriteLine("vnp_HashSecret: " + vnp_HashSecret);
+            Console.WriteLine("signData: " + signData);
 
             return baseUrl;
         }
-
-        public static String HmacSHA512(string key, String inputData)
-        {
-            var hash = new StringBuilder();
-            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
-            byte[] inputBytes = Encoding.UTF8.GetBytes(inputData);
-            using (var hmac = new HMACSHA512(keyBytes))
-            {
-                byte[] hashValue = hmac.ComputeHash(inputBytes);
-                foreach (var theByte in hashValue)
-                {
-                    hash.Append(theByte.ToString("x2"));
-                }
-            }
-
-            return hash.ToString();
-        }
-
         #endregion
 
         #region Response process
@@ -93,7 +85,6 @@ namespace BarBob.Areas.Customer.Controllers.Util
         {
             string rspRaw = GetResponseData();
             string myChecksum = HmacSHA512(secretKey, rspRaw);
-
             return myChecksum.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
         }
         private string GetResponseData()
@@ -115,7 +106,6 @@ namespace BarBob.Areas.Customer.Controllers.Util
                     data.Append(WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&");
                 }
             }
-            //remove last '&'
             if (data.Length > 0)
             {
                 data.Remove(data.Length - 1, 1);
@@ -124,6 +114,41 @@ namespace BarBob.Areas.Customer.Controllers.Util
         }
 
         #endregion
+
+        public static String HmacSHA512(string key, String inputData)
+        {
+            var hash = new StringBuilder(); 
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            byte[] inputBytes = Encoding.UTF8.GetBytes(inputData);
+            using (var hmac = new HMACSHA512(keyBytes))
+            {
+                byte[] hashValue = hmac.ComputeHash(inputBytes);
+                foreach (var theByte in hashValue)
+                {
+                    hash.Append(theByte.ToString("x2"));
+                }
+            }
+
+            return hash.ToString();
+        }
+
+        public string GetIpAddress()
+        {
+            string ipAddress;
+            try
+            {
+                ipAddress = _httpContextAccessor.HttpContext?.Request.Headers["X-Forwarded-For"];
+
+                if (string.IsNullOrEmpty(ipAddress) || (ipAddress.ToLower() == "unknown") || ipAddress.Length > 45)
+                    ipAddress = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
+            }
+            catch (Exception ex)
+            {
+                ipAddress = "Invalid IP:" + ex.Message;
+            }
+
+            return ipAddress;
+        }
     }
 
     public class VnPayCompare : IComparer<string>

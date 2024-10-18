@@ -4,7 +4,6 @@
 
 @model IEnumerable<BarBob.Models.Booking>
 
-
 <div class="form-card-container">
     <h2 class="form-title">Booking History</h2>
     <table class="table">
@@ -34,7 +33,7 @@
                     <td>
                         @if (booking.Status == "Pending")
                         {
-                            <form method="post" asp-action="Pay" asp-controller="Reservation" asp-route-bookingId="@booking.Id">
+                            <form method="post" asp-area="VNPayAPI" asp-action="Payment" asp-controller="VNPayAPI" asp-route-bookingId="@booking.Id">
                                 <button type="submit" class="pay-btn">Pay Now</button>
                             </form>
                         }
@@ -48,4 +47,3 @@
         </tbody>
     </table>
 </div>
-
