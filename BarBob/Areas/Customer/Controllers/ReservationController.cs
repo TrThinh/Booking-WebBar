@@ -58,6 +58,17 @@ namespace BarBob.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (reservationVM.CheckinDate.Date < DateTime.Now.Date)
+                {
+                    ModelState.AddModelError("CheckinDate", "Check-in date must be in the future.");
+                    var errorMessages = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+
+                    return Json(new { success = false, message = "Invalid booking data.", errors = errorMessages });
+                }
+
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 var booking = new Booking
@@ -75,7 +86,6 @@ namespace BarBob.Areas.Customer.Controllers
                 _unitOfWork.Booking.Add(booking);
                 await _unitOfWork.SaveAsync();
 
-                // Redirect đến trang History khi booking thành công
                 return RedirectToAction("History", "Reservation");
             }
             else
