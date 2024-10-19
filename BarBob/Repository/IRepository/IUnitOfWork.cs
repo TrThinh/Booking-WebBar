@@ -13,7 +13,6 @@ namespace BarBob.Repository.IRepository
         IBookingRepository Booking { get; }
         IPaymentRepository Payment { get; }
         ITableRepository Table { get; }
-        IMenuRepository Menu { get; } 
 
         void Save();
         Task<int> SaveAsync();

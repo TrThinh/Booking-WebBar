@@ -18,7 +18,6 @@ namespace BarBob.Data
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Table> Tables { get; set; }
-        public DbSet<Menu> Menus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuidlder)
         {

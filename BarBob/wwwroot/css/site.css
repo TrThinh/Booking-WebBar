@@ -266,6 +266,10 @@ body {
     color: black;
     text-align: center;
 }
+
+.text-center {
+    text-align: center;
+}
 /* ---------------------Login/Res Page------------------- */
 .form-sign {
     max-width: 40%;
