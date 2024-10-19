@@ -118,5 +118,31 @@ namespace BarBob.Areas.Customer.Controllers
                 Value = t.Id.ToString()
             });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelBooking(int id)
+        {
+            var booking = await _unitOfWork.Booking.GetFirstOrDefaultAsync(b => b.Id == id);
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            if (booking.Status == "Pending")
+            {
+                _unitOfWork.Booking.Remove(booking);
+                await _unitOfWork.SaveAsync();
+                TempData["success"] = "Booking cancelled successfully.";
+            }
+            else
+            {
+                TempData["error"] = "Only pending bookings can be cancelled.";
+            }
+
+            return RedirectToAction("History");
+        }
+
     }
 }

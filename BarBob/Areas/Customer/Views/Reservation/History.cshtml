@@ -6,6 +6,20 @@
 
 <div class="form-card-container">
     <h2 class="form-title">Booking History</h2>
+
+    @if (TempData["success"] != null)
+    {
+        <div id="success-message" class="modal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        @TempData["success"]
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
     <table class="table">
         <thead>
             <tr>
@@ -14,8 +28,8 @@
                 <th class="title-table">Checkin Time</th>
                 <th class="title-table">Guests</th>
                 <th class="title-table">Table</th>
-                <th class="title-table">Status</th>
-                <th class="title-table">Total Amount</th>
+                <th class="title-table">Deposit</th>
+                <th class="title-table">Pay</th>
                 <th class="title-table">Action</th>
             </tr>
         </thead>
@@ -28,13 +42,12 @@
                     <td class="text-content-table">@booking.CheckinTime.ToString(@"hh\:mm")</td>
                     <td class="text-content-table">@booking.Guests</td>
                     <td class="text-content-table">@booking.Table.Table_name</td>
-                    <td class="text-content-table">@booking.Status</td>
                     <td class="text-content-table">@booking.Count.ToString("C")</td>
-                    <td>
+                    <td class="text-center">
                         @if (booking.Status == "Pending")
                         {
                             <form method="post" asp-area="VNPayAPI" asp-action="Payment" asp-controller="VNPayAPI" asp-route-bookingId="@booking.Id">
-                                <button type="submit" class="pay-btn">Pay Now</button>
+                                <button type="submit" class="pay-btn" style="display: inline;">Pay Now</button>
                             </form>
                         }
                         else
@@ -42,8 +55,37 @@
                             <span class="text-content-table">Paid</span>
                         }
                     </td>
+                    <td style="margin: auto;" class="text-center">
+                        @if (booking.Status == "Pending")
+                        {
+                            <form method="post" asp-action="CancelBooking" asp-route-id="@booking.Id">
+                                <button type="submit" class="pay-btn" style="display: inline;">Cancel</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="" asp-area="Customer" asp-action="Feedback" asp-controller="Reservation" asp-route-bookingId="@booking.Id">
+                                <button type="submit" class="pay-btn" style="display: inline;">Feedback</button>
+                            </form>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        if ($('#success-message').length) {
+            $('#success-message').modal('show');
+
+            setTimeout(function () {
+                $('#success-message').modal('hide');
+            }, 3000);
+        }
+    });
+</script>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BarBob.Data;
 using BarBob.Repository.IRepository;
 using BarBob.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BarBob.Repository
 {
@@ -22,6 +23,11 @@ namespace BarBob.Repository
         public void Add(Booking booking)
         {
             _db.Bookings.Add(booking);
+        }
+
+        public async Task<Booking> GetFirstOrDefaultAsync(Expression<Func<Booking, bool>> filter)
+        {
+            return await _db.Bookings.FirstOrDefaultAsync(filter);
         }
 
         public void Update(Booking obj)
