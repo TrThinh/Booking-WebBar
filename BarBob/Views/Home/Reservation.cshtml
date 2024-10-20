@@ -36,7 +36,8 @@
         <div class="form-card-text" style="margin: auto; text-align: center; padding: 10px; font-size: 16px;">
             Please, <a id="login" asp-area="Identity" asp-page="/Account/Login" class="form-card-text" style="color: red; text-decoration: none;">login account </a>
             before make a reservation!</div>
-        <button type="submit" class="home-btn btn-a" style="margin: auto;">Reserve</button>
+
+        <button type="submit" class="home-btn btn-a" style="margin: auto;" asp-area="Identity" asp-page="/Account/Login">Reserve</button>
     </form>
 </div>
 
@@ -48,5 +49,4 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script src="~/js/reservation.js"></script>
 }

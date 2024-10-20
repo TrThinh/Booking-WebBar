@@ -1,4 +1,4 @@
-﻿@model List<FeedbackVM>
+﻿@model FeedbackListVM
 
 @{
     ViewData["Title"] = "Home Page";
@@ -130,8 +130,9 @@
         </div>
     </div>
 
-    <div class="feedback-container">
-        @foreach (var feedback in Model)
+    <div id="feedback-list" class="feedback-container">
+        
+        @foreach (var feedback in Model.RecentFeedbacks)
         {
             <div class="feedback-card">
                 <div class="feedback-header">
@@ -155,12 +156,61 @@
                 </div>
             </div>
         }
+
+        <button type="button" class="home-btn btn-a" data-toggle="modal" data-target="#exampleModalLong">More</button>
+
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Feedback list</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="feedback-container">
+
+                        @foreach (var feedback in Model.AllFeedbacks)
+                        {
+                            <div class="feedback-card">
+                                <div class="feedback-header">
+                                    <div class="feedback-user">
+                                        <span class="user-name">@feedback.FullName</span>
+                                        <span class="feedback-title">@feedback.Title</span>
+                                    </div>
+                                    <span class="feedback-date">@feedback.FeedbackDate.ToString("g")</span>
+                                </div>
+                                <div class="feedback-body">
+                                    <p class="feedback-status">@feedback.Status</p>
+                                    @if (feedback.Images != null && feedback.Images.Count > 0)
+                                    {
+                                        <div class="feedback-images">
+                                            @foreach (var image in feedback.Images)
+                                            {
+                                                <img src="@Url.Content("~/feedback/" + image)" alt="Feedback Image" class="feedback-image" />
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="home-btn btn-a" style="display: inline;" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script>
         $(document).ready(function () {
             jQuery.fn.carousel.Constructor.TRANSITION_DURATION = 0;

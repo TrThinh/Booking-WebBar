@@ -18,18 +18,38 @@ namespace BarBob.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            var feedbacks = _unitOfWork.Feedback.GetAll(includeProperties: "User")
-            .Select(f => new FeedbackVM
-            {
-                FullName = f.User.FirstName + " " + f.User.LastName,
-                Title = f.Title,
-                Status = f.Status,
-                FeedbackDate = f.FeedbackDate,
-                Images = f.Images
-            })
-            .ToList();
+            var recentFeedbacks = _unitOfWork.Feedback.GetAll(includeProperties: "User")
+                .OrderByDescending(f => f.FeedbackDate)
+                .Take(3)
+                .Select(f => new FeedbackVM
+                {
+                    FullName = f.User.FirstName + " " + f.User.LastName,
+                    Title = f.Title,
+                    Status = f.Status,
+                    FeedbackDate = f.FeedbackDate,
+                    Images = f.Images
+                })
+                .ToList();
 
-            return View(feedbacks);
+            var allFeedbacks = _unitOfWork.Feedback.GetAll(includeProperties: "User")
+                .OrderByDescending(f => f.FeedbackDate)
+                .Select(f => new FeedbackVM
+                {
+                    FullName = f.User.FirstName + " " + f.User.LastName,
+                    Title = f.Title,
+                    Status = f.Status,
+                    FeedbackDate = f.FeedbackDate,
+                    Images = f.Images
+                })
+                .ToList();
+
+            var feedbackModel = new FeedbackListVM
+            {
+                RecentFeedbacks = recentFeedbacks,
+                AllFeedbacks = allFeedbacks
+            };
+
+            return View(feedbackModel);
         }
 
         public IActionResult OurEvent()

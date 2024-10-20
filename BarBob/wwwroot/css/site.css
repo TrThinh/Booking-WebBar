@@ -575,7 +575,7 @@ button[type="submit"] {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 15px;
-    background-color: #ffffff;
+    background-color: #e9ecef;
 }
 
 .feedback-header {
@@ -592,7 +592,6 @@ button[type="submit"] {
 
 .user-name {
     font-size: 15px;
-    font-weight: bold;
     color: #333;
 }
 
@@ -614,9 +613,9 @@ button[type="submit"] {
 
 .feedback-status {
     text-align: left;
-    margin-left: 10px;
+    margin-left: 15px;
     font-size: 16px;
-    color: #555;
+    color: black;
 }
 
 .feedback-images {
@@ -635,7 +634,6 @@ button[type="submit"] {
 }
 
 .feedback-title {
-    text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
