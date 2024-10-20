@@ -27,13 +27,15 @@ namespace BarBob.Areas.Customer.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ReservationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IUnitOfWork unitOfWork, IConfiguration configuration)
+        public ReservationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IUnitOfWork unitOfWork, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _unitOfWork = unitOfWork;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -80,7 +82,7 @@ namespace BarBob.Areas.Customer.Controllers
                     CheckinDate = reservationVM.CheckinDate,
                     CheckinTime = reservationVM.CheckinTime,
                     Status = "Pending",
-                    Count = 100000
+                    Count = 100000 + reservationVM.Guests * 20000
                 };
 
                 _unitOfWork.Booking.Add(booking);
@@ -144,5 +146,50 @@ namespace BarBob.Areas.Customer.Controllers
             return RedirectToAction("History");
         }
 
+        public IActionResult Feedback()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitFeedback(Feedback feedback, List<IFormFile> images)
+        {
+            feedback.UserId = _userManager.GetUserId(User);
+
+            if (string.IsNullOrEmpty(feedback.UserId))
+            {
+                ModelState.AddModelError("UserId", "User ID is required.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                feedback.FeedbackDate = DateTime.Now;
+
+                if (images != null && images.Count <= 5)
+                {
+                    foreach (var image in images)
+                    {
+                        if (image.Length > 0)
+                        {
+                            var fileName = Path.GetFileName(image.FileName);
+                            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "feedback", fileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await image.CopyToAsync(stream);
+                            }
+
+                            feedback.Images.Add(fileName);
+                        }
+                    }
+                }
+
+                _unitOfWork.Feedback.Add(feedback);
+                await _unitOfWork.SaveAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(feedback);
+        }
     }
 }

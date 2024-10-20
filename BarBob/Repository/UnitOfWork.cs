@@ -15,7 +15,6 @@ namespace BarBob.Repository
         public IUserRepository User { get; private set; }
         public IFeedbackRepository Feedback { get; private set; }
         public IBookingRepository Booking { get; private set; }
-        public IPaymentRepository Payment { get; private set; }
         public ITableRepository Table { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
@@ -24,7 +23,6 @@ namespace BarBob.Repository
             User = new UserRepository(_db);
             Feedback = new FeedbackRepository(_db);
             Booking = new BookingRepository(_db);
-            Payment = new PaymentRepository(_db);
             Table = new TableRepository(_db);
         }
 

@@ -30,6 +30,16 @@ namespace BarBob.Repository
             return await _db.Bookings.FirstOrDefaultAsync(filter);
         }
 
+        public Task<Booking> GetFirstOrDefaultAsync(Expression<Func<Booking, bool>> filter, string includeProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Booking> GetFirstOrDefaultAsync(Func<Booking, bool> value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Booking obj)
         {
             _db.Bookings.Update(obj);

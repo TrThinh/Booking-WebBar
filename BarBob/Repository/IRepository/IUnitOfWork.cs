@@ -11,7 +11,6 @@ namespace BarBob.Repository.IRepository
         IUserRepository User { get; }
         IFeedbackRepository Feedback { get; }
         IBookingRepository Booking { get; }
-        IPaymentRepository Payment { get; }
         ITableRepository Table { get; }
 
         void Save();

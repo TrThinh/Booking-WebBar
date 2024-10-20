@@ -19,9 +19,9 @@ namespace BarBob.Models
         [Required]
         public DateTime FeedbackDate { get; set; }
 
-        public string? Image { get; set; }
+        public List<string>? Images { get; set; } = new List<string>();
 
-        // ---------------Foreign Key-----------------
+        // ------------- ForeignKey ------------
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

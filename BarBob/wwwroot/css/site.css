@@ -559,6 +559,136 @@ button[type="submit"] {
     margin-top: 30px;
     line-height: 1.6;
 }
+/* -------------Feedback------------------ */
+
+.feedback-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.feedback-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.feedback-date {
+    font-size: 13px;
+    color: #777;
+}
+
+.feedback-title {
+    text-align: left;
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+}
+
+.feedback-body {
+    margin-top: 5px;
+}
+
+.feedback-status {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.feedback-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.feedback-image {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.feedback-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-card-container-feedback {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input,
+.form-textarea,
+.form-file-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
 
 /* -------------Menu page----------------- */
 

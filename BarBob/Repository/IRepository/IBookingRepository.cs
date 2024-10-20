@@ -5,7 +5,8 @@ namespace BarBob.Repository.IRepository
 {
     public interface IBookingRepository : IRepository<Booking>
     {
-        Task<Booking> GetFirstOrDefaultAsync(Expression<Func<Booking, bool>> filter);
+        Task<Booking> GetFirstOrDefaultAsync(Expression<Func<Booking, bool>> filter, string includeProperties);
+        Task<Booking> GetFirstOrDefaultAsync(Func<Booking, bool> value);
         void Update(Booking obj);
     }
 }

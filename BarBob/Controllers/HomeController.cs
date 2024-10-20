@@ -23,7 +23,18 @@ namespace BarBob.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var feedbacks = _unitOfWork.Feedback.GetAll(includeProperties: "User")
+            .Select(f => new FeedbackVM
+            {
+                FullName = f.User.FirstName + " " + f.User.LastName,
+                Title = f.Title,
+                Status = f.Status,
+                FeedbackDate = f.FeedbackDate,
+                Images = f.Images
+            })
+            .ToList();
+
+            return View(feedbacks);
         }
 
         public IActionResult OurEvent()

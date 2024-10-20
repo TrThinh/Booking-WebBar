@@ -1,0 +1,28 @@
+﻿@using System.Security.Claims
+@model BarBob.Models.Feedback
+
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<div class="form-card-container-feedback">
+    <h2 class="form-card-title">Share your experience here</h2>
+    <form asp-area="Customer" asp-controller="Reservation" asp-action="SubmitFeedback" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-input" required />
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="form-label"></label>
+            <textarea asp-for="Status" class="form-textarea" required></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Upload Images (Max 5)</label>
+            <input type="file" name="images" class="form-file-input" multiple accept="image/*" />
+        </div>
+        <input type="hidden" asp-for="UserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+        <div class="text-center">
+            <button type="submit" class="home-btn btn-a" style="display: inline;">Submit</button>
+        </div>
+    </form>
+</div>
