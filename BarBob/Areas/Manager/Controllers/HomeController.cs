@@ -3,7 +3,7 @@
 namespace BarBob.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    public class DashboardController : Controller
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {

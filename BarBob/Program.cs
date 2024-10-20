@@ -30,7 +30,7 @@ builder.Services.AddControllers()
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
 
-//Other server register
+// Other server register
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddHttpContextAccessor();
@@ -59,13 +59,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//Seed Data
+// Seed Data
 SeedDatabase();
 
-//Are Map
+// Define route mappings
 app.MapControllerRoute(
     name: "areaRoute",
-    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+    pattern: "{area:}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
@@ -75,7 +75,7 @@ app.MapRazorPages();
 
 app.Run();
 
-//C Seed Data
+// C Seed Data
 void SeedDatabase()
 {
     using (var scope = app.Services.CreateScope())
