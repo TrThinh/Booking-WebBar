@@ -1,6 +1,5 @@
 ﻿async function fetchBookingsData() {
-    // Gọi đến endpoint trả về JSON
-    const response = await fetch('/Admin/Dashboard/GetBookingsPerTable');
+    const response = await fetch('/Manager/Home/GetBookingsPerTable');
     if (!response.ok) {
         console.error("Failed to fetch bookings data:", response.statusText);
         return [];
@@ -43,9 +42,8 @@ async function renderChart() {
 
 async function fetchBookingSummary() {
     try {
-        const response = await fetch('/Admin/Dashboard/GetBookingSummary');
+        const response = await fetch('/Manager/Home/GetBookingSummary');
 
-        // Kiểm tra phản hồi
         if (!response.ok) {
             console.error("Failed to fetch booking summary:", response.statusText);
             return { TotalBookings: 0, TotalPrice: 0 };
@@ -56,6 +54,23 @@ async function fetchBookingSummary() {
     } catch (error) {
         console.error("Error fetching booking summary:", error);
         return { TotalBookings: 0, TotalPrice: 0 };
+    }
+}
+
+async function fetchBookingConfirm() {
+    try {
+        const response = await fetch('/Manager/Home/GetBookingConfirm');
+
+        if (!response.ok) {
+            console.error("Failed to fetch booking confirm:", response.statusText);
+            return { TotalBookingsConfirm: 0, TotalPriceConfirm: 0 };
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching booking confirm:", error);
+        return { TotalBookingsConfirm: 0, TotalPriceConfirm: 0 };
     }
 }
 
@@ -75,5 +90,24 @@ async function renderBookingSummary() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', renderBookingSummary);
+async function renderBookingConfirm() {
+    const summaryData = await fetchBookingConfirm();
+
+    if (summaryData && typeof summaryData === 'object' &&
+        summaryData.hasOwnProperty('totalBookingsConfirm') &&
+        summaryData.hasOwnProperty('totalPriceConfirm')) {
+
+        document.getElementById('totalBookingsConfirm').innerText = summaryData.totalBookingsConfirm;
+        document.getElementById('totalPriceConfirm').innerText = summaryData.totalPriceConfirm.toLocaleString('vi-VN');
+    } else {
+        console.warn("Invalid booking confirm data:", summaryData);
+        document.getElementById('totalBookingsConfirm').innerText = 0;
+        document.getElementById('totalPriceConfirm').innerText = "0 VND";
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    renderBookingSummary();
+    renderBookingConfirm();
+});
 renderChart();
