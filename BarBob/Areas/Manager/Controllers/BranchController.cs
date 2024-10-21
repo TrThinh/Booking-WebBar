@@ -39,6 +39,16 @@ namespace BarBob.Areas.Manager.Controllers
             return View(booking);
         }
 
+        public IActionResult BookingToday(int? id) 
+        {
+            if (id == null || id == 0)
+            {
+                return View(new Booking());
+            }
+            Booking booking = _unitOfWork.Booking.Get(t => t.Id == id);
+            return View();
+        }
+
         #region API CALLS
 
         [HttpGet]
@@ -61,6 +71,7 @@ namespace BarBob.Areas.Manager.Controllers
             var bookings = _unitOfWork.Booking.GetAllIncluding(b => b.User, b => b.Table).Select(t => new
             {
                 userName = t.User.UserName,
+                phoneNumber = t.User.PhoneNumber,
                 tableName = t.Table.Table_name,
                 guest = t.Guests,
                 bookingDate = t.BookingDate,
@@ -69,6 +80,26 @@ namespace BarBob.Areas.Manager.Controllers
                 status = t.Status
             }).ToList();
 
+            return Json(new { data = bookings });
+        }
+
+        [HttpGet]
+        public IActionResult GetBookingConfirmedToday()
+        {
+            var bookings = _unitOfWork.Booking.GetAllIncluding(b => b.User, b => b.Table)
+                .Where(b => b.Status == "Confirmed")
+                .Select(t => new
+                {
+                    userName = t.User.LastName,
+                    phoneNumber = t.User.PhoneNumber,
+                    tableName = t.Table.Table_name,
+                    guest = t.Guests,
+                    checkinDate = t.CheckinDate,
+                    checkinTime = t.CheckinTime,
+                    status = t.Status
+                }).ToList();
+
+            Console.WriteLine("Bookings Today: " + bookings.Count);
             return Json(new { data = bookings });
         }
 

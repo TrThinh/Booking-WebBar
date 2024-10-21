@@ -1,31 +1,26 @@
 ﻿@model Booking
 
 @{
-    ViewData["Title"] = "Booking";
+    ViewData["Title"] = "BookingConfirmToday";
 }
 
 <div class="container-fluild mx-4">
-    <h1 class="h3 mb-2 text-gray-800">Booking list</h1>
-    <!-- DataTales Example -->
+    <h1 class="h3 mb-2 text-gray-800">Booking Confirmed list</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Order data table</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Booking Confirmed</h6>
             <div class="col-6 d-flex justify-content-end">
-                <a class="btn btn-primary" asp-controller="Branch" asp-action="BookingToday"> 
-                    Booking Confirm Today
-                </a>
             </div>
         </div>
         <div class="card-body">
             <div class="">
-                <table id="booking-table" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
+                <table id="booking-today" class="table table-bordered table-hover table-striped" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>User</th>
                             <th>Phone</th>
                             <th>Table</th>
                             <th>Guest</th>
-                            <th>Booking date</th>
                             <th>Checkin date</th>
                             <th>Checkin time</th>
                             <th>Status</th>
