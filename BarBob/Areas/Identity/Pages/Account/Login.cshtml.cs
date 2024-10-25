@@ -14,18 +14,22 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNet.Identity;
 
 namespace BarBob.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, Microsoft.AspNetCore.Identity.UserManager<IdentityUser> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
+
         }
 
         /// <summary>
@@ -109,16 +113,33 @@ namespace BarBob.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                if (!Input.Email.Contains("@"))
+                {
+                    ModelState.AddModelError(string.Empty, "Email account must have @ character");
+                    return Page();
+                }
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        return LocalRedirect("~/Admin/ManageUser");
+                    }
+                    else if (await _userManager.IsInRoleAsync(user, "Manager"))
+                    {
+                        return LocalRedirect("~/Manager/Home");
+                    }
+                    else if (await _userManager.IsInRoleAsync(user, "Customer"))
+                    {
+                        return LocalRedirect("~/Customer");
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
+                    _logger.LogWarning("Requires two factor authentication.");
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
@@ -128,6 +149,7 @@ namespace BarBob.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    _logger.LogWarning($"Login failed for {Input.Email}. Result: {result}");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

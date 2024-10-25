@@ -35,7 +35,7 @@
                         <!-- Sidebar - Brand -->
                         @if (User.IsInRole("Customer"))
                         {
-                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index">
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Customer" asp-controller="Home" asp-action="Index">
                                 <div class="sidebar-brand-text mx-3">
                                     <img class="logo_barbob" src="~/image/logo.png" />
                                 </div>
