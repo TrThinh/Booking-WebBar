@@ -35,11 +35,6 @@ namespace BarBob.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Booking> GetFirstOrDefaultAsync(Func<Booking, bool> value)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Booking obj)
         {
             _db.Bookings.Update(obj);

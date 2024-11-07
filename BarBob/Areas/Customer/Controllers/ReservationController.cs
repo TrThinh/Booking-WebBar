@@ -132,16 +132,9 @@ namespace BarBob.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            if (booking.Status == "Pending")
-            {
-                _unitOfWork.Booking.Remove(booking);
-                await _unitOfWork.SaveAsync();
-                TempData["success"] = "Booking cancelled successfully.";
-            }
-            else
-            {
-                TempData["error"] = "Only pending bookings can be cancelled.";
-            }
+            _unitOfWork.Booking.Remove(booking);
+            await _unitOfWork.SaveAsync();
+            TempData["success"] = "Booking cancelled successfully.";
 
             return RedirectToAction("History");
         }
