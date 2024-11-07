@@ -39,7 +39,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    padding-top: 90px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 /*--------------------Logo--------------------*/
@@ -167,6 +176,23 @@ body {
 .nav-item-sidebar {
     margin: 5px 0;
 }
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .navbar-nav {
+        background: black;
+    }
+
+
+    .logo_barbob {
+        width: 50px;
+    }
+}
+
 /*--------------------Body--------------------*/
 
 .body_home {
