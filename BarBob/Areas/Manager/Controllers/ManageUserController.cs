@@ -148,9 +148,12 @@ namespace BarBob.Areas.Manager.Controllers
 
             // If user has role is Admin will display "message"
             var roles = await _userManager.GetRolesAsync(user);
-            if (roles.Contains("Admin"))
+            var restrictedRoles = new[] { "Admin", "Manager" };
+            var restrictedRole = roles.FirstOrDefault(role => restrictedRoles.Contains(role));
+
+            if (restrictedRole != null)
             {
-                return BadRequest(new { success = false, message = "Cannot delete a user with the Admin role" });
+                return BadRequest(new { success = false, message = $"Cannot delete a user with the {restrictedRole} role" });
             }
 
             var deleteResult = await _userManager.DeleteAsync(user);
