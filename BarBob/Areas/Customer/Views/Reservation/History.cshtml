@@ -59,14 +59,23 @@
                         @if (booking.Status == "Pending")
                         {
                             <form method="post" asp-action="CancelBooking" asp-route-id="@booking.Id">
-                                <button type="submit" class="pay-btn" style="display: inline;">Cancel</button>
+                                <button type="submit" class="pay-btn" style="display: inline;" onclick="return confirm('Are you sure you want to delete this booking?');">Cancel</button>
                             </form>
                         }
                         else
                         {
-                            <form asp-area="Customer" asp-controller="Reservation" asp-action="Feedback">
-                                <button type="submit" class="pay-btn" style="display: inline;">Feedback</button>
-                            </form>
+                            @if (booking.IsFeedbackGiven == 1)
+                            {
+                                <form asp-area="Customer" asp-controller="Reservation" asp-action="FeedbackHistory">
+                                    <button type="submit" class="pay-btn" style="display: inline;">View Feedback</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-area="Customer" asp-controller="Reservation" asp-action="Feedback" asp-route-id="@booking.Id">
+                                    <button type="submit" class="pay-btn" style="display: inline;">Feedback</button>
+                                </form>
+                            }
                         }
                     </td>
                 </tr>
@@ -88,4 +97,20 @@
             }, 3000);
         }
     });
+
+    function cancelBooking(bookingId) {
+        Swal.fire({
+            title: 'Are you sure you want to delete?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               window.location.href = `/Customer/Reservation/History/CancelBooking/${bookingId}`;
+            }
+        });
+    }
 </script>

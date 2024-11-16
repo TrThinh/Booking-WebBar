@@ -105,5 +105,10 @@ namespace BarBob.Repository
             }
             return query.ToList();
         }
+
+        public async Task SaveAsync()
+        {
+            await _db.SaveChangesAsync();
+        }
     }
 }

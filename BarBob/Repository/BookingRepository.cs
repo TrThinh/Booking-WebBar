@@ -35,9 +35,14 @@ namespace BarBob.Repository
             throw new NotImplementedException();
         }
 
-        public void Update(Booking obj)
+        public void Update(Booking booking)
         {
-            _db.Bookings.Update(obj);
+            _db.Bookings.Update(booking);
+        }
+
+        public async Task SaveAsync()
+        {
+            await _db.SaveChangesAsync();
         }
     }
 }

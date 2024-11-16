@@ -14,7 +14,7 @@ namespace BarBob.Models
 
         [Required]
         [MaxLength(100)]
-        public string Title { get; set; }
+        public string Title { get; set; } 
 
         [Required]
         public DateTime FeedbackDate { get; set; }
@@ -22,6 +22,11 @@ namespace BarBob.Models
         public List<string>? Images { get; set; } = new List<string>();
 
         // ------------- ForeignKey ------------
+        public int BookingId { get; set; }
+        [ForeignKey("BookingId")]
+        [ValidateNever]
+        public Booking Booking { get; set; }
+
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

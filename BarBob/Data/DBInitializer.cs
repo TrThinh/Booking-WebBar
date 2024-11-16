@@ -91,26 +91,6 @@ namespace BarBob.Data
                 _userManager.AddToRoleAsync(userDB, SD.Role_Customer).GetAwaiter().GetResult();
             }
 
-            // Feedbacks data exa
-            if (!_db.Feedbacks.Any())
-            {
-                User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
-
-                if (user == null)
-                {
-                    return;
-                }
-
-                var feedbacks = new List<Feedback>
-                    {
-                        new Feedback { UserId = user.Id, Title = "Good", FeedbackDate = new DateTime(2024, 2, 15), Status = "I was very funny at there, nice service" },
-                        new Feedback { UserId = user.Id, Title = "Good", FeedbackDate = new DateTime(2024, 2, 16), Status = "I love that, so I will comeback more" }
-                    };
-
-                _db.Feedbacks.AddRange(feedbacks);
-                _db.SaveChanges();
-            }
-
             // Table data exa
             if (!_db.Tables.Any())
             {
@@ -120,31 +100,14 @@ namespace BarBob.Data
                         Price = 150000},
                     new Table { Table_name = "Outdoor", Description = "Outdoor table with air and sea breeze", 
                         Price = 150000},
+                    new Table { Table_name = "VIP", Description = "Private room (7 - 10 people)", 
+                        Price = 500000},
+                    new Table { Table_name = "Private", Description = "Small room", 
+                        Price = 180000},
 
                 };
 
                 _db.Tables.AddRange(tables);
-                _db.SaveChanges();
-            }
-
-            // Booking data exa
-            if (!_db.Bookings.Any())
-            {
-                User user = _db.Users.FirstOrDefault(b => b.UserName == "customer@gmail.com");
-                Table table = _db.Tables.FirstOrDefault(t => t.Description == "The table in the house has air conditioning and sound");
-
-
-                if (user == null)
-                {
-                    return;
-                }
-
-                var bookings = new List<Booking>
-                {
-                    new Booking {  UserId = user.Id, TableId = table.Id, Guests = 2, BookingDate = new DateTime(2024,5,29), CheckinDate = new DateTime(2024, 6, 2), CheckinTime = new TimeSpan(18, 30, 00)}
-                };
-
-                _db.Bookings.AddRange(bookings);
                 _db.SaveChanges();
             }
         }

@@ -40,10 +40,19 @@ namespace BarBob.Repository
             return query;
         }
 
+        public void Add(Feedback feedback)
+        {
+            _db.Feedbacks.Add(feedback);
+        }
 
         public void Update(Feedback obj)
         {
             _db.Feedbacks.Update(obj);
+        }
+
+        public async Task SaveAsync()
+        {
+            await _db.SaveChangesAsync();
         }
     }
 }

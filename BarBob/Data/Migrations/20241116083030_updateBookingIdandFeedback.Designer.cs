@@ -4,6 +4,7 @@ using BarBob.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BarBob.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241116083030_updateBookingIdandFeedback")]
+    partial class updateBookingIdandFeedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +48,8 @@ namespace BarBob.Data.Migrations
                     b.Property<int>("Guests")
                         .HasColumnType("int");
 
-                    b.Property<int>("IsFeedbackGiven")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsFeedbackGiven")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -381,7 +384,7 @@ namespace BarBob.Data.Migrations
             modelBuilder.Entity("BarBob.Models.Feedback", b =>
                 {
                     b.HasOne("BarBob.Models.Booking", "Booking")
-                        .WithMany()
+                        .WithMany("Feedbacks")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -446,6 +449,11 @@ namespace BarBob.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BarBob.Models.Booking", b =>
+                {
+                    b.Navigation("Feedbacks");
                 });
 #pragma warning restore 612, 618
         }

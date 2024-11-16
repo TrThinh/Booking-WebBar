@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using System.Diagnostics;
+using BarBob.Repository;
 
 
 namespace BarBob.Areas.Customer.Controllers
@@ -82,7 +84,8 @@ namespace BarBob.Areas.Customer.Controllers
                     CheckinDate = reservationVM.CheckinDate,
                     CheckinTime = reservationVM.CheckinTime,
                     Status = "Pending",
-                    Count = 100000 + reservationVM.Guests * 20000
+                    Count = 100000 + reservationVM.Guests * 20000,
+                    IsFeedbackGiven = 0
                 };
 
                 _unitOfWork.Booking.Add(booking);
@@ -109,7 +112,6 @@ namespace BarBob.Areas.Customer.Controllers
 
             return View(bookings);
         }
-
 
         private IEnumerable<SelectListItem> GetAvailableTables()
         {
@@ -139,9 +141,14 @@ namespace BarBob.Areas.Customer.Controllers
             return RedirectToAction("History");
         }
 
-        public IActionResult Feedback()
+        public async Task<IActionResult> Feedback(int id)
         {
-            return View();
+            var feedback = new Feedback
+            {
+                BookingId = id
+            };
+
+            return View(feedback);
         }
 
         public IActionResult FeedbackHistory()
@@ -184,12 +191,27 @@ namespace BarBob.Areas.Customer.Controllers
                         }
                     }
                 }
+                else
+                {
+                    feedback.Images = null;
+                }
 
                 _unitOfWork.Feedback.Add(feedback);
+
+                var booking = await _unitOfWork.Booking.GetFirstOrDefaultAsync(b => b.Id == feedback.BookingId);
+                if (booking != null)
+                {
+                    booking.IsFeedbackGiven = 1;
+                    _unitOfWork.Booking.Update(booking);
+                }
+
                 await _unitOfWork.SaveAsync();
-                return RedirectToAction("Index", "Home");
+
+                TempData["success"] = "Feedback submitted successfully.";
+                return RedirectToAction("FeedbackHistory", "Reservation");
             }
 
+            TempData["error"] = "Failed to submit feedback. Please check your input.";
             return View(feedback);
         }
 

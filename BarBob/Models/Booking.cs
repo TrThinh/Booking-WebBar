@@ -36,6 +36,7 @@ namespace BarBob.Models
         [Column(TypeName = "decimal(18,2)")]
         [Range(0, double.MaxValue)]
         public decimal Count { get; set; }
+        public int IsFeedbackGiven { get; set; }
 
         // ---------------Foreign Key---------------
 
