@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BarBob.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Feedback History";
+}
+
+<div class="form-card-container">
+    <h2>Feedback History</h2>
+
+    @if (!Model.Any())
+    {
+        <p>You have not provided any feedback yet.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Images</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var feedback in Model)
+                {
+                    <tr>
+                        <td>@feedback.Title</td>
+                        <td>@feedback.Status</td>
+                        <td>@feedback.FeedbackDate.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            @if (feedback.Images != null && feedback.Images.Any())
+                            {
+                                <ul>
+                                    @foreach (var image in feedback.Images)
+                                    {
+                                        <li style="list-style: none; padding-bottom: 5px;">
+                                            <img src="@Url.Content($"~/feedback/{image}")" alt="Feedback Image" width="100" height="100" />
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span>No images</span>
+                            }
+                        </td>
+                        <td style="display: flex;">
+                            <form method="post" asp-action="DeleteFeedback" asp-route-id="@feedback.Id">
+                                <button type="submit" class="home-btn btn-a" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<script>
+    function deleteFeedback(feedbackId) {
+        Swal.fire({
+            title: 'Are you sure you want to delete?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               window.location.href = `/Customer/Reservation/DeleteFeedback/${feedbackId}`;
+            }
+        });
+    }
+</script>

@@ -144,6 +144,14 @@ namespace BarBob.Areas.Customer.Controllers
             return View();
         }
 
+        public IActionResult FeedbackHistory()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var feedbacks = _unitOfWork.Feedback.GetAll(f => f.UserId == userId);
+
+            return View(feedbacks);
+        }
+
         [HttpPost]
         public async Task<IActionResult> SubmitFeedback(Feedback feedback, List<IFormFile> images)
         {
@@ -183,6 +191,24 @@ namespace BarBob.Areas.Customer.Controllers
             }
 
             return View(feedback);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteFeedback(int id)
+        {
+            var feedback = _unitOfWork.Feedback.GetFirstOrDefault(f => f.Id == id);
+
+            if (feedback == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.Feedback.Remove(feedback);
+            await _unitOfWork.SaveAsync();
+
+            TempData["success"] = "Feedback deleted successfully.";
+            return RedirectToAction(nameof(FeedbackHistory));
         }
     }
 }
