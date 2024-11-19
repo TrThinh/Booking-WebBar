@@ -295,6 +295,142 @@ header {
 .text-center {
     text-align: center;
 }
+
+@media (max-width: 992px) {
+    .text-center {
+        text-align: center !important;
+    }
+
+    .carousel-inner .carousel-item img {
+        max-height: 200px;
+    }
+
+    .about-title-1 {
+        font-size: 25px;
+    }
+
+    .about-text {
+        font-size: 14px;
+    }
+
+    .info-title {
+        font-size: 20px;
+    }
+
+    .info-text {
+        font-size: 14px;
+    }
+
+    .col-brand-4, .col-brand-5 {
+        max-width: 100%;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    .h2-title-brand {
+        font-size: 30px;
+    }
+
+    .text-brand {
+        font-size: 18px;
+    }
+
+    .nav-map iframe {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .carousel-inner .carousel-item img {
+        max-height: 150px;
+    }
+
+    .about-title-1 {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .about-title {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .about-text {
+        font-size: 15px;
+    }
+
+    .info-title {
+        font-size: 18px;
+    }
+
+    .info-text {
+        font-size: 15px;
+    }
+
+    .col-md-6, .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .h2-title-brand {
+        font-size: 24px;
+    }
+
+    .text-brand {
+        font-size: 16px;
+    }
+
+    .nav-map iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    .home-btn, .btn-a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .pay-btn {
+        font-size: 14px;
+    }
+}
+
+/* Feedback Section */
+@media (max-width: 576px) {
+    .feedback-card {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .feedback-images img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Event Page */
+@media (max-width: 576px) {
+    .nav-tag img {
+        max-height: 150px;
+        object-fit: cover;
+    }
+
+    .h2-title-brand {
+        font-size: 20px;
+    }
+
+    .text-brand {
+        font-size: 14px;
+    }
+}
 /* ---------------------Login/Res Page------------------- */
 .form-sign {
     max-width: 40%;
@@ -399,12 +535,11 @@ header {
 
 .form-control {
     width: 100%;
-    padding: 10px;
     margin-top: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 14px;
-    background-color: #a2d2ff;
+    background-color: white;
     transition: border-color 0.3s ease-in-out;
 }
 
@@ -596,6 +731,7 @@ button[type="submit"] {
 }
 
 .feedback-card {
+    width: 100%;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     padding: 10px;
@@ -903,3 +1039,46 @@ button[type="submit"] {
         background-color: black;
         border-color: white;
     }
+
+/*-------------------- reserve page --------------------*/
+
+.form-card-container-reserve {
+    margin: 2rem auto;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.form-card-title-reserve {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 770px) {
+    .reserve-display {
+        display: grig
+    }
+
+    .reserve-display .col {
+        width: 33.33%;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .reserve-display {
+        display: grid;
+    }
+
+    .reserve-display h1.form-card-title {
+        font-size: 1.2rem;
+    }
+
+    .reserve-display button.home-btn {
+        font-size: 1rem;
+    }
+}
+
+/*-------------------- home page --------------------*/

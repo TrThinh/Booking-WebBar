@@ -5,99 +5,79 @@
     var tableListJson = Json.Serialize(Model.TableList);
 }
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-        <title>@ViewData["Title"]</title>
-        <style>
-            body {
-                background-color: #f8f9fa;
-            }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<title>@ViewData["Title"]</title>
 
-            .form-card-container {
-                margin: 2rem auto;
-                max-width: 600px;
-                background-color: #fff;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 2rem;
-            }
-
-            .form-card-title {
-                text-align: center;
-                margin-bottom: 1.5rem;
-            }
-        </style>
-    </head>
-
-<body>
-
-    <div class="row">
-        <div class="col-6">
-            <div class="form-card-container">
-                <h1 class="form-card-title">Make a Reservation</h1>
-                <form id="reservationForm" method="post">
-                    <div class="form-group">
-                        <label class="form-card-text" for="CheckinDate">Checkin Date</label>
-                        <input type="date" class="form-control" id="CheckinDate" required />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-card-text" for="CheckinTime">Checkin Time</label>
-                        <select class="form-control" id="CheckinTime" required>
-                            <option value="">Select a time</option>
-                            @{
-                                var timeSlots = new[] { "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00" };
-                                foreach (var time in timeSlots)
-                                {
-                                    <option value="@time">@time</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-card-text" for="Guests">Guests</label>
-                        <input type="number" class="form-control" id="Guests" min="1" required />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-card-text" for="TableId">Table</label>
-                        <select class="form-control" id="TableId" required>
-                            <option value="">Select a table</option>
-                            @foreach (var table in Model.TableList)
+<div class="reserve-display row">
+    <div class="col-lg-6 col-md-6 col-sm-4 col-4">
+        <div class="form-card-container-reserve">
+            <h1 class="form-card-title-reserve">Make a Reservation</h1>
+            <form id="reservationForm" method="post">
+                <div class="form-group">
+                    <label class="form-card-text" for="CheckinDate">Checkin Date</label>
+                    <input type="date" class="form-control" id="CheckinDate" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-card-text" for="CheckinTime">Checkin Time</label>
+                    <select class="form-control" id="CheckinTime" required>
+                        <option value="">Select a time</option>
+                        @{
+                            var timeSlots = new[] { "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00" };
+                            foreach (var time in timeSlots)
                             {
-                                <option value="@table.Value">@table.Text</option>
+                                <option value="@time">@time</option>
                             }
-                        </select>
-                    </div>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-card-text" for="Guests">Guests</label>
+                    <input type="number" class="form-control" id="Guests" min="1" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-card-text" for="TableId">Table</label>
+                    <select class="form-control" id="TableId" required>
+                        <option value="">Select a table</option>
+                        @foreach (var table in Model.TableList)
+                        {
+                            <option value="@table.Value">@table.Text</option>
+                        }
+                    </select>
+                </div>
 
-                    <div class="form-card-text" style="margin: auto; text-align: center; padding: 10px; font-size: 16px;">
-                        Please, <a id="login" asp-area="Identity" asp-page="/Account/Login" class="form-card-text" style="color: red; text-decoration: none;">login account </a>
-                        before make a reservation!
-                    </div>
+                <div class="form-card-text" style="margin: auto; text-align: center; padding: 10px; font-size: 16px;">
+                    Please, <a id="login" asp-area="Identity" asp-page="/Account/Login" class="form-card-text" style="color: red; text-decoration: none;">login account </a>
+                    before make a reservation!
+                </div>
 
-                    <button type="submit" class="home-btn btn-a" style="margin: auto;" asp-area="Identity" asp-page="/Account/Login">Reserve</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="col-6 text-center">
-            <div class="row">
-                <iframe src="https://thoitiet.app/widget/embed/da-nang?style=4&day=7&td=%23ffffff&ntd=%234f7ffa&mvb=%23fafcff&mv=%23335fd1&mdk=%23e5eeff&htd=true"
-                        id="widgeturl" scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width: 100%; height: 500px; display: inline; margin-top: 60px;"></iframe>
-            </div>
+                <button type="submit" class="home-btn btn-a" style="margin: auto;" asp-area="Identity" asp-page="/Account/Login">Reserve</button>
+            </form>
         </div>
     </div>
 
-    <div id="resultMessage" style="display:none;"></div>
+    <div class="col-lg-6 col-md-6 col-sm-4 col-4 text-center">
+        <div class="row">
+            <iframe src="https://thoitiet.app/widget/embed/da-nang?style=4&day=7&td=%23ffffff&ntd=%234f7ffa&mvb=%23fafcff&mv=%23335fd1&mdk=%23e5eeff&htd=true"
+                    id="widgeturl" scrolling="no" frameborder="0" allowtransparency="true" 
+                    style="border:none; overflow:hidden; width: 100%; height: 500px; display: inline; margin-top: 60px;"></iframe>
+        </div>
+    </div>
+</div>
+
+<div id="resultMessage" style="display:none;"></div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 
     <script>
         var tableList = @Html.Raw(tableListJson);
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById("reservationForm").addEventListener("submit", function (event) {
+        document.getElementById("reservationForm").addEventListener("submit", function(event) {
             var checkinDate = new Date(document.getElementById("CheckinDate").value);
             var currentDate = new Date();
             currentDate.setHours(0, 0, 0, 0);
@@ -108,8 +88,4 @@
             }
         });
     </script>
-</body>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
 }

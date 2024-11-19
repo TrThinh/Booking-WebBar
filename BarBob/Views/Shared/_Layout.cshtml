@@ -71,6 +71,10 @@
                             <partial name="_SidebarCustomerPartial" />
                         }
 
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <partial name="_LoginPartial" />
+                        </div>
+
                     </ul>
                 }
                 else
@@ -114,11 +118,11 @@
                             <span>Privacy</span>
                         </a>
                     </li>
-                }
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <partial name="_LoginPartial" />
-                </div>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <partial name="_LoginPartial" />
+                    </div>
+                }
 
             </div>
         </nav>
