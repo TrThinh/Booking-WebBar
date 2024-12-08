@@ -69,15 +69,22 @@
     </script>
 
     <script>
-        document.getElementById("reservationForm").addEventListener("submit", function(event) {
+        document.getElementById("reservationForm").addEventListener("submit", function (event) {
             var checkinDate = new Date(document.getElementById("CheckinDate").value);
             var currentDate = new Date();
             currentDate.setHours(0, 0, 0, 0);
 
             if (checkinDate < currentDate) {
                 event.preventDefault();
-                alert("Please select a check-in date in the future.");
+                Swal.fire({
+                    title: 'Invalid Date!',
+                    text: 'Please select a check-in date in the future.',
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
             }
         });
     </script>
+
 }

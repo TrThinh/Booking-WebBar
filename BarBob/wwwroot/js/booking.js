@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
     loadDataTable();
-    loadBookingTodayTable();
+    loadBookingConfirmedTable();
 });
 
 function loadDataTable() {
@@ -50,10 +50,10 @@ function loadDataTable() {
     }
 }
 
-function loadBookingTodayTable() {
-    dataTable = $('#booking-today').DataTable({
+function loadBookingConfirmedTable() {
+    dataTable = $('#booking-confirmed').DataTable({
         "ajax": {
-            url: '/manager/branch/GetBookingConfirmedToday',
+            url: '/manager/branch/GetBookingConfirmed',
             dataSrc: function (json) {
                 console.log("API response:", json.data);
                 return json.data;

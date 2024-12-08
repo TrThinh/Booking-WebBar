@@ -39,7 +39,7 @@ namespace BarBob.Areas.Manager.Controllers
             return View(booking);
         }
 
-        public IActionResult BookingToday(int? id) 
+        public IActionResult BookingConfirmed(int? id) 
         {
             if (id == null || id == 0)
             {
@@ -84,7 +84,7 @@ namespace BarBob.Areas.Manager.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBookingConfirmedToday()
+        public IActionResult GetBookingConfirmed()
         {
             var bookings = _unitOfWork.Booking.GetAllIncluding(b => b.User, b => b.Table)
                 .Where(b => b.Status == "Confirmed")
@@ -99,7 +99,7 @@ namespace BarBob.Areas.Manager.Controllers
                     status = t.Status
                 }).ToList();
 
-            Console.WriteLine("Bookings Today: " + bookings.Count);
+            Console.WriteLine("Bookings : " + bookings.Count);
             return Json(new { data = bookings });
         }
 

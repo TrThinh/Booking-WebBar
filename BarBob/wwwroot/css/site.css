@@ -411,7 +411,7 @@ header {
     }
 
     .feedback-images img {
-        width: 100%;
+        width: 150px;
         height: auto;
     }
 }
@@ -580,6 +580,22 @@ button[type="submit"] {
     cursor: pointer;
     font-size: 16px;
 }
+
+button[type="button"] {
+    font-family: "Proxima Nova Regular";
+    color: #000;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: black;
+    border-radius: 4px;
+    margin: 2px;
+    padding: 10px 40px 10px 40px;
+}
+
+    button[type="button"]:hover {
+        color: white;
+        background-color: black;
+        border-color: white;
+    }
 
 @media (max-width: 300px) {
     .form-card-container {
@@ -1040,8 +1056,22 @@ button[type="submit"] {
         border-color: white;
     }
 
-/*-------------------- reserve page --------------------*/
+.cancel-booking-btn {
+    font-family: "Proxima Nova Regular";
+    color: #000;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: black;
+    border-radius: 2px;
+    margin: 2px;
+}
 
+    .cancel-booking-btn:hover {
+        color: white;
+        background-color: black;
+        border-color: white;
+    }
+
+/*-------------------- reserve page --------------------*/
 .form-card-container-reserve {
     margin: 2rem auto;
     max-width: 600px;

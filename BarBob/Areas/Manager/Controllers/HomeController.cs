@@ -13,7 +13,6 @@ namespace BarBob.Areas.Manager.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // Trả về View cho dashboard
         [HttpGet("Manager/Home")]
         public IActionResult Index()
         {

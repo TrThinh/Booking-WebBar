@@ -48,8 +48,10 @@
                             }
                         </td>
                         <td style="display: flex;">
-                            <form method="post" asp-action="DeleteFeedback" asp-route-id="@feedback.Id">
-                                <button type="submit" class="home-btn btn-a" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</button>
+                            <form id="delete-feedback-form-@feedback.Id" method="post" asp-action="DeleteFeedback" asp-route-id="@feedback.Id">
+                                <button type="button" class="home-btn btn-a delete-feedback-btn" data-feedback-id="@feedback.Id">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -60,19 +62,28 @@
 </div>
 
 <script>
-    function deleteFeedback(feedbackId) {
-        Swal.fire({
-            title: 'Are you sure you want to delete?',
-            text: 'This action cannot be undone!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-               window.location.href = `/Customer/Reservation/DeleteFeedback/${feedbackId}`;
-            }
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-feedback-btn").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var feedbackId = button.getAttribute("data-feedback-id");
+                var formId = `delete-feedback-form-${feedbackId}`;
+                var form = document.getElementById(formId);
+
+                Swal.fire({
+                    title: 'Are you sure you want to delete this feedback?',
+                    text: 'This action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
         });
-    }
+    });
 </script>
+
