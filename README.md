@@ -3,11 +3,13 @@ BarBob is a website of a branch bar to introduce that bar and it makes it easy t
 
 # Getting Started
 
-Prerequisites: List any software, tools, or dependencies required to run your project.
+Backend: ASP.NET CORE MVC
 
-Installation: Explain how to install and set up your project locally.
+FrontEnd: Boostrap
 
-Usage: Describe how to use your project (commands, configuration, etc.).
+Database: MYSql
+
+Project Management: GitHub
 
 # Outline Features
 1. **Role-based Access Control**: The system implements role-based access control to ensure that each user, including the Admin, Manager and Customer has appropriate permissions and access levels.
